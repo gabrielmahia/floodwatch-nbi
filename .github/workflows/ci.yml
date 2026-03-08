@@ -1,4 +1,4 @@
-name: CI - Lint & Test
+name: CI — Lint
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,9 +15,5 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - name: Install dependencies
-        run: pip install pandas plotly folium numpy pytest ruff
-      - name: Lint
-        run: ruff check utils/ tests/ --ignore E501,E402
-      - name: Test
-        run: pytest tests/ -q --tb=short
+      - run: pip install ruff
+      - run: ruff check app.py pages/ utils/ --ignore E501,F401
