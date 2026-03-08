@@ -1,0 +1,11 @@
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
+2023-11-10,Homa Bay Town,Homa Bay Central,-0.5167,34.4500,High,3,1800,Lake overflow,9.0,5,True,False
+2023-04-25,Ndhiwa,Ndhiwa,-0.7167,34.3167,High,2,1400,River overflow,6.5,6,True,False
+2022-11-15,Rangwe,Rangwe,-0.5833,34.4000,Medium,1,800,Flash flood,3.5,8,False,False
+2022-05-05,Homa Bay Town,Homa Bay Central,-0.5167,34.4500,Critical,5,3200,Lake overflow,18.0,4,True,False
+2021-11-20,Kabondo Kasipul,Kasipul,-0.4833,34.5000,High,3,1600,River overflow,7.5,5,True,False
+2021-04-28,Ndhiwa,Ndhiwa,-0.7167,34.3167,High,2,1200,Flash flood,5.5,6,True,False
+2020-11-08,Homa Bay Town,Homa Bay Central,-0.5167,34.4500,High,4,2400,Lake overflow,12.5,4,True,False
+2019-05-12,Mbita,Suba North,-0.4167,34.2167,Medium,1,900,Lake overflow,4.0,7,True,False
+2018-11-18,Homa Bay Town,Homa Bay Central,-0.5167,34.4500,Critical,6,3800,Lake overflow,22.0,3,True,False
+2017-05-05,Rangwe,Rangwe,-0.5833,34.4000,High,2,1300,River overflow,6.0,5,False,False
