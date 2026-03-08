@@ -1,0 +1,16 @@
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
+2024-04-24,Mathare Valley,Mathare,-1.2592,36.8598,Critical,18,4200,River overflow,340,4,True,False
+2024-04-24,Mukuru kwa Njenga,Embakasi,-1.3100,36.8800,Critical,11,3800,Flash flood,280,5,True,False
+2024-04-25,Kibera,Langata,-1.3133,36.7833,Critical,7,5100,Drainage failure,190,6,True,False
+2024-03-15,Kahawa Wendani,Kasarani,-1.2000,36.9100,High,3,820,River overflow,85,3,True,False
+2024-03-15,Ruaka,Kiambu border,-1.2200,36.7800,High,2,640,Flash flood,62,4,False,False
+2024-01-20,Tassia,Embakasi,-1.3050,36.8950,High,1,510,Drainage failure,44,7,True,False
+2023-11-12,Pipeline Estate,Embakasi,-1.3200,36.8700,High,4,1200,Flash flood,110,5,True,False
+2023-11-12,Korogocho,Kasarani,-1.2450,36.8850,Critical,6,2900,River overflow,220,3,True,False
+2023-10-22,South B,Langata,-1.3000,36.8200,Medium,0,380,Drainage failure,28,9,True,True
+2023-08-03,Highridge,Westlands,-1.2750,36.8050,Medium,0,120,Flash flood,15,11,True,True
+2023-06-18,Baba Dogo,Kasarani,-1.2500,36.8700,High,2,760,River overflow,88,4,True,False
+2023-05-04,Ruaraka,Kasarani,-1.2400,36.8600,High,1,490,River overflow,52,6,True,False
+2022-11-29,Mukuru kwa Reuben,Embakasi,-1.3150,36.8850,Critical,9,3100,Flash flood,265,4,True,False
+2022-10-17,Mathare North,Mathare,-1.2550,36.8650,High,3,1050,River overflow,95,5,True,False
+2022-05-09,Kangemi,Westlands,-1.2700,36.7700,Medium,1,310,Drainage failure,32,8,True,False
