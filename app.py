@@ -89,8 +89,9 @@ with col_map:
             total_incidents=("date","count"),
             total_deaths=("deaths","sum"),
             total_displaced=("displaced","sum"),
-            enforcement_gap=("policy_enforced", lambda x: (incidents.loc[x.index,"policy_existed"] == True).sum() - (x == True).sum()),
         ).reset_index()
+        # city_stats.city_id matches cities_df.id — rename before merge
+        city_stats = city_stats.rename(columns={"city_id": "id"})
         cities_df = cities_df.merge(city_stats, on="id", how="left").fillna(0)
     else:
         cities_df["total_incidents"] = 0
