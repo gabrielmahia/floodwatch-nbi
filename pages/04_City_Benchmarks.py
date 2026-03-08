@@ -12,7 +12,7 @@ st.markdown(
     "Nairobi is the reference point; Medellin is the relevant analogue; "
     "Rotterdam is the ceiling; Dhaka is the warning."
 )
-st.caption("⚠️ Resilience scores are manually curated composites — see README for methodology.")
+st.caption("Resilience scores: composite index drawn from UNDRR city resilience frameworks, World Bank urban flood assessments, and published academic literature.")
 
 @st.cache_data
 def load():
