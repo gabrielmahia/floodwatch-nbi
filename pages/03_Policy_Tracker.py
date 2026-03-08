@@ -7,7 +7,7 @@ from utils.charts import policy_status_sunburst, budget_gap_chart, blocker_treem
 
 st.set_page_config(page_title="Policy Tracker · FloodWatch Kenya", page_icon="📋", layout="wide")
 st.markdown("# 📋 Policy Tracker")
-st.caption("Sources: NCC · NEMA enforcement orders · NDMA contingency plans · county CIDP documentation · World Bank project reports")
+st.caption("Sources: NCC enforcement records · NEMA orders · NDMA contingency plans · county CIDP documentation · World Bank project reports")
 
 cities = active_cities()
 all_policies = load_all_policies()
@@ -27,9 +27,9 @@ if mode == "National overview":
     # KPIs
     total       = len(df)
     blocked     = len(df[df["status"].isin(["Stalled","Not Enforced","Not Started","Draft Only"])])
-    lives_risk  = int(df[df["status"]!="Completed"]["lives_saved_estimate"].sum())
-    budget_alloc = df["budget_allocated_ksh_m"].sum()
-    budget_used  = (df["budget_allocated_ksh_m"]*df["budget_utilized_pct"]/100).sum()
+    lives_risk  = int(pd.to_numeric(df.loc[df["status"]!="Completed","lives_saved_estimate"], errors="coerce").fillna(0).sum())
+    budget_alloc = pd.to_numeric(df["budget_allocated_ksh_m"], errors="coerce").fillna(0).sum()
+    budget_used  = (pd.to_numeric(df["budget_allocated_ksh_m"],errors="coerce").fillna(0)*pd.to_numeric(df["budget_utilized_pct"],errors="coerce").fillna(0)/100).sum()
     idle_pct     = round((1-budget_used/budget_alloc)*100,1) if budget_alloc else 0
 
     c1,c2,c3,c4,c5 = st.columns(5)
@@ -124,9 +124,9 @@ else:  # Single city
         st.warning(f"No policy data for {city_sel}.")
         st.stop()
 
-    lives_risk  = int(df[df["status"]!="Completed"]["lives_saved_estimate"].sum())
-    budget_alloc = df["budget_allocated_ksh_m"].sum()
-    budget_used  = (df["budget_allocated_ksh_m"]*df["budget_utilized_pct"]/100).sum()
+    lives_risk  = int(pd.to_numeric(df.loc[df["status"]!="Completed","lives_saved_estimate"], errors="coerce").fillna(0).sum())
+    budget_alloc = pd.to_numeric(df["budget_allocated_ksh_m"], errors="coerce").fillna(0).sum()
+    budget_used  = (pd.to_numeric(df["budget_allocated_ksh_m"],errors="coerce").fillna(0)*pd.to_numeric(df["budget_utilized_pct"],errors="coerce").fillna(0)/100).sum()
 
     c1,c2,c3,c4 = st.columns(4)
     c1.metric("Policies tracked", len(df))
