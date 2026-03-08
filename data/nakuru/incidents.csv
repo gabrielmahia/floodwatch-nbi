@@ -1,0 +1,11 @@
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
+2023-11-18,Rhonda,Nakuru East,-0.2833,36.0667,High,2,1400,Drainage failure,7.5,5,True,False
+2023-04-20,Kaptembwo,Nakuru West,-0.3167,36.0500,High,3,1800,Flash flood,9.0,5,True,False
+2022-11-10,Flamingo,Nakuru East,-0.2667,36.0833,Medium,1,900,Drainage failure,4.0,7,False,False
+2022-05-05,London Estate,Nakuru North,-0.2500,36.0667,High,2,1600,Flash flood,8.0,5,True,False
+2021-11-22,Rhonda,Nakuru East,-0.2833,36.0667,Critical,5,3200,Flash flood,18.5,4,True,False
+2021-04-28,Lanet,Nakuru East,-0.2667,36.1000,Medium,1,700,Drainage failure,3.5,8,False,False
+2020-11-14,Kaptembwo,Nakuru West,-0.3167,36.0500,High,3,2100,Flash flood,11.0,4,True,False
+2020-05-08,Lake Nakuru Shoreline,Nakuru South,-0.3667,36.0833,High,0,2800,Lake overflow,6.0,5,True,False
+2019-11-05,Flamingo,Nakuru East,-0.2667,36.0833,High,2,1500,Flash flood,7.0,5,True,False
+2018-05-12,London Estate,Nakuru North,-0.2500,36.0667,Medium,1,800,Drainage failure,3.0,9,False,False
