@@ -1,191 +1,146 @@
-"""
-FloodWatch NBI — Folium map builders.
-
-All maps use CartoDB dark tiles. Riparian corridors and
-vulnerable zone overlays are hardcoded as WGS84 polylines.
-Update RIPARIAN_ZONES and VULNERABLE_ZONES when adding new areas.
-"""
+"""Folium map builders for FloodWatch NBI."""
 from __future__ import annotations
-
 import folium
-from folium.plugins import HeatMap, MarkerCluster
+from folium.plugins import HeatMap
 import pandas as pd
 
-# ── Nairobi geographic constants ─────────────────────────────────
-NAIROBI_CENTER = [-1.286389, 36.817223]
 
-# Approximate riparian corridors (WGS84 polylines)
-# Source: WRMA / Google Earth approximations — replace with actual WRMA GIS data
-RIPARIAN_ZONES = [
-    {
-        "name": "Nairobi River",
-        "color": "#3B82F6",
-        "coords": [
-            [-1.2750, 36.7650], [-1.2700, 36.7850], [-1.2650, 36.8050],
-            [-1.2600, 36.8200], [-1.2620, 36.8400], [-1.2700, 36.8600],
-            [-1.2800, 36.8800], [-1.2950, 36.9100],
-        ],
-    },
-    {
-        "name": "Mathare River",
-        "color": "#60A5FA",
-        "coords": [
-            [-1.2500, 36.8500], [-1.2550, 36.8650], [-1.2600, 36.8800],
-            [-1.2650, 36.9000], [-1.2700, 36.9200],
-        ],
-    },
-    {
-        "name": "Ngong River",
-        "color": "#93C5FD",
-        "coords": [
-            [-1.3150, 36.7800], [-1.3100, 36.7950], [-1.3050, 36.8100],
-            [-1.3000, 36.8300], [-1.3050, 36.8500],
-        ],
-    },
-    {
-        "name": "Gitathuru River",
-        "color": "#BFDBFE",
-        "coords": [
-            [-1.2300, 36.8400], [-1.2400, 36.8500], [-1.2500, 36.8600],
-            [-1.2600, 36.8700],
-        ],
-    },
-]
+# ── Geographic constants ──────────────────────────────────────────────────────
 
-# Known high-vulnerability zones (approximate bounding polygons)
+NAIROBI_CENTER = [-1.2921, 36.8219]
+
+# Approximate riparian corridors (polylines of key rivers through vulnerable zones)
+RIPARIAN_ZONES = {
+    "Nairobi River": [
+        [-1.2631, 36.7819], [-1.2678, 36.7992], [-1.2714, 36.8156],
+        [-1.2745, 36.8312], [-1.2789, 36.8489], [-1.2823, 36.8634],
+        [-1.2856, 36.8778],
+    ],
+    "Mathare River": [
+        [-1.2456, 36.8623], [-1.2534, 36.8712], [-1.2601, 36.8801],
+        [-1.2638, 36.8889], [-1.2689, 36.8967],
+    ],
+    "Ngong River": [
+        [-1.3156, 36.7534], [-1.3189, 36.7712], [-1.3212, 36.7889],
+        [-1.3245, 36.8067], [-1.3267, 36.8245],
+    ],
+    "Gitathuru River": [
+        [-1.2245, 36.8834], [-1.2312, 36.8901], [-1.2389, 36.8967],
+        [-1.2445, 36.9034],
+    ],
+}
+
+# High-risk informal settlement zones (approximate bounding boxes as polygons)
 VULNERABLE_ZONES = [
-    {
-        "name": "Mathare Valley",
-        "color": "#EF4444",
-        "coords": [
-            [-1.2550, 36.8550], [-1.2550, 36.8700],
-            [-1.2650, 36.8700], [-1.2650, 36.8550], [-1.2550, 36.8550],
-        ],
-    },
-    {
-        "name": "Mukuru Settlements",
-        "color": "#F97316",
-        "coords": [
-            [-1.3050, 36.8700], [-1.3050, 36.8950],
-            [-1.3200, 36.8950], [-1.3200, 36.8700], [-1.3050, 36.8700],
-        ],
-    },
-    {
-        "name": "Kibera",
-        "color": "#EAB308",
-        "coords": [
-            [-1.3050, 36.7700], [-1.3050, 36.8000],
-            [-1.3250, 36.8000], [-1.3250, 36.7700], [-1.3050, 36.7700],
-        ],
-    },
+    {"name": "Mathare",  "coords": [[-1.257,-1.271, 36.850, 36.900]],
+     "color": "#FF3333",
+     "polygon": [[-1.257,36.850],[-1.257,36.900],[-1.271,36.900],[-1.271,36.850]]},
+    {"name": "Kibera",   "coords": [[-1.305,-1.320, 36.780, 36.810]],
+     "color": "#FF6B35",
+     "polygon": [[-1.305,36.780],[-1.305,36.810],[-1.320,36.810],[-1.320,36.780]]},
+    {"name": "Mukuru",   "coords": [[-1.300,-1.320, 36.860, 36.895]],
+     "color": "#FF6B35",
+     "polygon": [[-1.300,36.860],[-1.300,36.895],[-1.320,36.895],[-1.320,36.860]]},
+    {"name": "Korogocho","coords": [[-1.225,-1.240, 36.885, 36.905]],
+     "color": "#FFB347",
+     "polygon": [[-1.225,36.885],[-1.225,36.905],[-1.240,36.905],[-1.240,36.885]]},
 ]
 
-SEVERITY_COLORS = {
-    "Critical": "#EF4444",
-    "High":     "#F97316",
-    "Medium":   "#EAB308",
-    "Low":      "#22C55E",
+SEVERITY_ICON_COLORS = {
+    "Critical": "red",
+    "High":     "orange",
+    "Medium":   "beige",
+    "Low":      "green",
 }
 
 
-def _dark_map(zoom: int = 12) -> folium.Map:
+# ── Map builders ──────────────────────────────────────────────────────────────
+
+def _base_map(zoom: int = 12) -> folium.Map:
     return folium.Map(
         location=NAIROBI_CENTER,
         zoom_start=zoom,
         tiles="CartoDB dark_matter",
-        attr="© CartoDB © OpenStreetMap contributors",
+        prefer_canvas=True,
     )
 
 
-def _add_riparian_overlays(m: folium.Map) -> None:
-    for river in RIPARIAN_ZONES:
+def _add_riparian_corridors(m: folium.Map) -> None:
+    for river_name, coords in RIPARIAN_ZONES.items():
         folium.PolyLine(
-            locations=river["coords"],
-            color=river["color"],
+            locations=coords,
+            color="#4FC3F7",
             weight=3,
             opacity=0.7,
-            tooltip=f"🌊 {river['name']} corridor",
-            popup=folium.Popup(
-                f"<b>{river['name']}</b><br>30m riparian reserve required under Water Act 2016",
-                max_width=220,
-            ),
+            tooltip=f"{river_name} (riparian corridor)",
+            dash_array="8 4",
         ).add_to(m)
 
 
 def _add_vulnerable_zones(m: folium.Map) -> None:
     for zone in VULNERABLE_ZONES:
         folium.Polygon(
-            locations=zone["coords"],
+            locations=zone["polygon"],
             color=zone["color"],
+            weight=1,
             fill=True,
+            fill_color=zone["color"],
             fill_opacity=0.12,
-            weight=1.5,
-            tooltip=f"⚠ {zone['name']} — high vulnerability zone",
+            tooltip=f"{zone['name']} — high-risk zone",
         ).add_to(m)
 
 
-def build_incident_map(df: pd.DataFrame) -> folium.Map:
-    """Dark Folium map with incident markers, riparian corridors, and zone overlays.
-
-    Marker icon colour encodes severity. Popup shows incident detail.
-    """
-    m = _dark_map()
-    _add_riparian_overlays(m)
+def build_incident_map(incidents_df: pd.DataFrame) -> folium.Map:
+    """Folium dark map with incident markers, river corridors, and zone overlays."""
+    m = _base_map()
+    _add_riparian_corridors(m)
     _add_vulnerable_zones(m)
 
-    cluster = MarkerCluster(
-        options={
-            "maxClusterRadius": 40,
-            "disableClusteringAtZoom": 14,
-        }
-    )
+    for _, row in incidents_df.iterrows():
+        color = SEVERITY_ICON_COLORS.get(row["severity"], "gray")
+        enforced_str = "✅ Enforced" if str(row.get("policy_enforced","")).lower() == "true" else "❌ Not enforced"
+        existed_str  = "✅ Existed" if str(row.get("policy_existed","")).lower() == "true" else "❌ None"
 
-    for _, row in df.iterrows():
-        color  = SEVERITY_COLORS.get(row["severity"], "#94A3B8")
-        icon   = "exclamation-triangle" if row["severity"] in ("Critical", "High") else "info-sign"
-        enforced_text = (
-            "✓ Enforced" if row["policy_enforced"]
-            else ("⚠ NOT enforced" if row["policy_existed"] else "✗ No policy")
-        )
         popup_html = f"""
-        <div style="font-family:monospace; font-size:12px; min-width:200px;">
-            <b style="color:{color}">{row['severity'].upper()}</b> — {row['location']}<br>
-            <hr style="border-color:#334155; margin:4px 0">
-            <b>Date:</b> {row['date']}<br>
-            <b>Cause:</b> {row['cause']}<br>
-            <b>Deaths:</b> {row['deaths']} &nbsp; <b>Displaced:</b> {row['displaced']:,}<br>
-            <b>Damage:</b> KSh {row['infra_damage_ksh_m']:.0f}M<br>
-            <b>Response:</b> {row['response_days']} days<br>
-            <b>Policy:</b> {enforced_text}
+        <div style="font-family:sans-serif;min-width:220px;color:#111">
+          <b style="font-size:14px">{row["location"]}</b><br>
+          <span style="color:#888">{row["date"]} · {row["zone"]}</span><br><hr style="margin:4px 0">
+          <b>Severity:</b> {row["severity"]}<br>
+          <b>Deaths:</b> {row["deaths"]} · <b>Displaced:</b> {int(row["displaced"]):,}<br>
+          <b>Cause:</b> {row["cause"]}<br>
+          <b>Damage:</b> KSh {row["infra_damage_ksh_m"]}M<br>
+          <b>Response:</b> {row["response_days"]} days<br>
+          <hr style="margin:4px 0">
+          <b>Policy existed:</b> {existed_str}<br>
+          <b>Policy enforced:</b> {enforced_str}
         </div>
         """
         folium.Marker(
             location=[row["lat"], row["lon"]],
-            popup=folium.Popup(popup_html, max_width=260),
-            tooltip=f"{row['severity']} — {row['location']} ({row['date']})",
-            icon=folium.Icon(color="red" if row["severity"] == "Critical" else
-                             "orange" if row["severity"] == "High" else "beige",
-                             icon=icon, prefix="glyphicon"),
-        ).add_to(cluster)
+            popup=folium.Popup(popup_html, max_width=280),
+            tooltip=f"{row['severity']}: {row['location']} ({row['deaths']} deaths)",
+            icon=folium.Icon(color=color, icon="tint", prefix="fa"),
+        ).add_to(m)
 
-    cluster.add_to(m)
-    folium.LayerControl().add_to(m)
     return m
 
 
-def build_risk_heatmap(df: pd.DataFrame) -> folium.Map:
-    """Heatmap weighted by deaths + displacement."""
-    m = _dark_map()
-    _add_riparian_overlays(m)
+def build_risk_heatmap(incidents_df: pd.DataFrame) -> folium.Map:
+    """Folium heatmap weighted by deaths and displacement."""
+    m = _base_map()
+    _add_riparian_corridors(m)
 
-    heat_data = [
-        [row["lat"], row["lon"], row["deaths"] * 50 + row["displaced"] * 0.1]
-        for _, row in df.iterrows()
-    ]
+    heat_data = []
+    for _, row in incidents_df.iterrows():
+        weight = (row["deaths"] * 10 + row["displaced"] / 50)
+        heat_data.append([row["lat"], row["lon"], weight])
+
     HeatMap(
         heat_data,
         radius=25,
-        blur=18,
-        gradient={"0.3": "#3B82F6", "0.6": "#EAB308", "1.0": "#EF4444"},
+        blur=20,
+        gradient={0.2: "#4FC3F7", 0.5: "#FF6B35", 0.8: "#FF3333", 1.0: "#FFFFFF"},
+        min_opacity=0.4,
     ).add_to(m)
+
     return m
