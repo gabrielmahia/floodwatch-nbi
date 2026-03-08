@@ -7,7 +7,7 @@ from utils.charts import policy_status_sunburst, budget_gap_chart, blocker_treem
 
 st.set_page_config(page_title="Policy Tracker · FloodWatch Kenya", page_icon="📋", layout="wide")
 st.markdown("# 📋 Policy Tracker")
-st.caption("⚠️ DEMO DATA — policies drawn from public NCC, NEMA, NDMA, and county documentation.")
+st.caption("Sources: NCC · NEMA enforcement orders · NDMA contingency plans · county CIDP documentation · World Bank project reports")
 
 cities = active_cities()
 all_policies = load_all_policies()
