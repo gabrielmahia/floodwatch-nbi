@@ -223,7 +223,7 @@ def blocker_treemap(df: pd.DataFrame) -> go.Figure:
     except Exception:
         agg = df.copy()
         agg["blocker_short"] = short
-        agg = agg.groupby("blocker_short")["lives_saved_estimate"].sum().reset_index()
+        agg = agg.groupby("blocker_short")["lives_saved_estimate"].apply(lambda x: pd.to_numeric(x, errors="coerce").fillna(0).sum()).reset_index()
         agg = agg.sort_values("lives_saved_estimate", ascending=True)
         fig = px.bar(agg, x="lives_saved_estimate", y="blocker_short", orientation="h",
                      color="lives_saved_estimate",
