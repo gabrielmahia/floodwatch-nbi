@@ -61,9 +61,9 @@ policy_gap       = int(
 ) if not incidents.empty else 0
 
 total_policies   = len(policies) if not policies.empty else 0
-lives_at_risk    = int(policies[policies["status"] != "Completed"]["lives_saved_estimate"].sum()) if not policies.empty else 0
-budget_alloc     = policies["budget_allocated_ksh_m"].sum() if not policies.empty else 0
-budget_used      = (policies["budget_allocated_ksh_m"] * policies["budget_utilized_pct"] / 100).sum() if not policies.empty else 0
+lives_at_risk    = int(pd.to_numeric(policies.loc[policies["status"] != "Completed", "lives_saved_estimate"], errors="coerce").fillna(0).sum()) if not policies.empty else 0
+budget_alloc     = pd.to_numeric(policies["budget_allocated_ksh_m"], errors="coerce").fillna(0).sum() if not policies.empty else 0
+budget_used      = (pd.to_numeric(policies["budget_allocated_ksh_m"], errors="coerce").fillna(0) * pd.to_numeric(policies["budget_utilized_pct"], errors="coerce").fillna(0) / 100).sum() if not policies.empty else 0
 budget_idle_pct  = round((1 - budget_used / budget_alloc) * 100, 1) if budget_alloc else 0
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
