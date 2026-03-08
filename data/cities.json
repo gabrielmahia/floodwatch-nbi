@@ -1,17 +1,19 @@
 {
-  "version": "2.0",
+  "version": "3.0",
+  "description": "FloodWatch Kenya \u2014 25-city coverage. Add a city: create data/{id}/ with incidents.csv + policies.csv, add entry here.",
   "cities": [
     {
       "id": "nairobi",
       "name": "Nairobi",
       "county": "Nairobi City County",
-      "status": "active",
       "tier": 1,
+      "status": "active",
       "pop_m": 4.9,
       "lat": -1.2921,
       "lon": 36.8219,
       "zoom": 12,
-      "risk_type": "Urban drainage + riparian encroachment",
+      "color": "#FF6B35",
+      "risk_type": "Urban drainage failure + riparian encroachment",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Mathare",
@@ -25,21 +27,21 @@
         "Ngong River",
         "Gitathuru River"
       ],
-      "color": "#FF6B35",
-      "data_quality": "demo",
       "incidents_file": "data/nairobi/incidents.csv",
-      "policies_file": "data/nairobi/policies.csv"
+      "policies_file": "data/nairobi/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "garissa",
       "name": "Garissa",
       "county": "Garissa County",
-      "status": "active",
       "tier": 1,
+      "status": "active",
       "pop_m": 0.37,
       "lat": -0.4569,
       "lon": 39.6583,
       "zoom": 11,
+      "color": "#FF3333",
       "risk_type": "Tana River seasonal overflow \u2014 most lethal single-event floods",
       "flood_season": "Apr\u2013May, Oct\u2013Dec",
       "primary_zones": [
@@ -52,47 +54,46 @@
         "Tana River",
         "Daua River"
       ],
-      "color": "#FF3333",
-      "data_quality": "demo",
       "incidents_file": "data/garissa/incidents.csv",
-      "policies_file": "data/garissa/policies.csv"
+      "policies_file": "data/garissa/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "budalangi",
       "name": "Budalangi",
       "county": "Busia County",
-      "status": "active",
       "tier": 1,
+      "status": "active",
       "pop_m": 0.18,
       "lat": 0.1333,
       "lon": 34.0167,
       "zoom": 12,
+      "color": "#E53935",
       "risk_type": "Nzoia River \u2014 most flood-prone constituency in Kenya",
       "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
       "primary_zones": [
         "Budalangi Central",
         "Budalangi East",
-        "Bunyala North",
-        "Bunyala South"
+        "Bunyala"
       ],
       "rivers": [
         "Nzoia River"
       ],
-      "color": "#E53935",
-      "data_quality": "demo",
       "incidents_file": "data/budalangi/incidents.csv",
-      "policies_file": "data/budalangi/policies.csv"
+      "policies_file": "data/budalangi/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "kisumu",
       "name": "Kisumu",
       "county": "Kisumu County",
-      "status": "active",
       "tier": 1,
+      "status": "active",
       "pop_m": 0.61,
       "lat": -0.0917,
       "lon": 34.768,
       "zoom": 12,
+      "color": "#FF6B35",
       "risk_type": "Lake Victoria backflow + Nyando River compound risk",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
@@ -103,24 +104,23 @@
       ],
       "rivers": [
         "Nyando River",
-        "Auji River",
         "Lake Victoria"
       ],
-      "color": "#FF6B35",
-      "data_quality": "demo",
       "incidents_file": "data/kisumu/incidents.csv",
-      "policies_file": "data/kisumu/policies.csv"
+      "policies_file": "data/kisumu/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "mombasa",
       "name": "Mombasa",
       "county": "Mombasa County",
-      "status": "active",
       "tier": 1,
+      "status": "active",
       "pop_m": 1.2,
       "lat": -4.0435,
       "lon": 39.6682,
       "zoom": 12,
+      "color": "#1565C0",
       "risk_type": "Coastal tidal surge + Tudor Creek overflow",
       "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
       "primary_zones": [
@@ -133,48 +133,73 @@
         "Tudor Creek",
         "Mwache River"
       ],
-      "color": "#1565C0",
-      "data_quality": "demo",
       "incidents_file": "data/mombasa/incidents.csv",
-      "policies_file": "data/mombasa/policies.csv"
+      "policies_file": "data/mombasa/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "mandera",
+      "name": "Mandera",
+      "county": "Mandera County",
+      "tier": 1,
+      "status": "active",
+      "pop_m": 0.37,
+      "lat": 3.9333,
+      "lon": 41.85,
+      "zoom": 11,
+      "color": "#B71C1C",
+      "risk_type": "Daua River cross-border (Ethiopia/Somalia) \u2014 zero advance warning",
+      "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
+      "primary_zones": [
+        "Mandera Central",
+        "Mandera East",
+        "Elwak",
+        "Lafey"
+      ],
+      "rivers": [
+        "Daua River"
+      ],
+      "incidents_file": "data/mandera/incidents.csv",
+      "policies_file": "data/mandera/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "nakuru",
       "name": "Nakuru",
       "county": "Nakuru County",
-      "status": "active",
       "tier": 2,
+      "status": "active",
       "pop_m": 0.57,
       "lat": -0.3031,
       "lon": 36.08,
       "zoom": 12,
-      "risk_type": "Rapid urbanisation, drainage gap, Lake Nakuru rising",
+      "color": "#FB8C00",
+      "risk_type": "Rapid post-charter urbanisation, drainage gap, Lake Nakuru rising",
       "flood_season": "Mar\u2013May",
       "primary_zones": [
         "Rhonda",
         "Kaptembwo",
-        "Flamingo",
-        "London Estate"
+        "Flamingo"
       ],
       "rivers": [
         "Njoro River",
         "Makalia River"
       ],
-      "color": "#FB8C00",
-      "data_quality": "demo",
       "incidents_file": "data/nakuru/incidents.csv",
-      "policies_file": "data/nakuru/policies.csv"
+      "policies_file": "data/nakuru/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "eldoret",
       "name": "Eldoret",
       "county": "Uasin Gishu County",
-      "status": "active",
       "tier": 2,
+      "status": "active",
       "pop_m": 0.47,
       "lat": 0.5143,
       "lon": 35.2698,
       "zoom": 12,
+      "color": "#F57F17",
       "risk_type": "Sosiani River + riparian informal settlements",
       "flood_season": "Mar\u2013May, Sep\u2013Nov",
       "primary_zones": [
@@ -186,220 +211,439 @@
       "rivers": [
         "Sosiani River"
       ],
-      "color": "#F57F17",
-      "data_quality": "demo",
       "incidents_file": "data/eldoret/incidents.csv",
-      "policies_file": "data/eldoret/policies.csv"
+      "policies_file": "data/eldoret/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "kericho",
       "name": "Kericho",
       "county": "Kericho County",
-      "status": "active",
       "tier": 2,
+      "status": "active",
       "pop_m": 0.11,
       "lat": -0.3667,
       "lon": 35.2833,
       "zoom": 12,
-      "risk_type": "Kipsonoi/Itare rivers, tea country runoff, landslide-flood",
+      "color": "#558B2F",
+      "risk_type": "Tea country runoff, landslide-flood, Itare/Kipsonoi rivers",
       "flood_season": "Mar\u2013May",
       "primary_zones": [
         "Kericho Central",
         "Ainamoi",
-        "Kipkelion East",
         "Bureti"
       ],
       "rivers": [
         "Kipsonoi River",
-        "Itare River",
-        "Sondu River"
+        "Itare River"
       ],
-      "color": "#558B2F",
-      "data_quality": "demo",
       "incidents_file": "data/kericho/incidents.csv",
-      "policies_file": "data/kericho/policies.csv"
+      "policies_file": "data/kericho/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "malindi",
       "name": "Malindi",
       "county": "Kilifi County",
-      "status": "active",
       "tier": 2,
+      "status": "active",
       "pop_m": 0.12,
       "lat": -3.2167,
       "lon": 40.1167,
       "zoom": 12,
+      "color": "#00897B",
       "risk_type": "Sabaki River mouth + coastal flooding",
       "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
       "primary_zones": [
         "Malindi Central",
-        "Mambrui",
-        "Sabaki"
+        "Mambrui"
       ],
       "rivers": [
         "Sabaki River"
       ],
-      "color": "#00897B",
-      "data_quality": "demo",
       "incidents_file": "data/malindi/incidents.csv",
-      "policies_file": "data/malindi/policies.csv"
+      "policies_file": "data/malindi/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "thika",
       "name": "Thika",
       "county": "Kiambu County",
-      "status": "active",
       "tier": 2,
+      "status": "active",
       "pop_m": 0.34,
       "lat": -1.0333,
       "lon": 37.0833,
       "zoom": 12,
-      "risk_type": "Chania + Thika rivers, industrial zone drainage failure",
+      "color": "#6D4C41",
+      "risk_type": "Chania + Thika rivers, industrial drainage failure",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Kiandutu",
-        "Makongeni",
-        "Thika Central"
+        "Makongeni"
       ],
       "rivers": [
         "Chania River",
         "Thika River"
       ],
-      "color": "#6D4C41",
-      "data_quality": "demo",
       "incidents_file": "data/thika/incidents.csv",
-      "policies_file": "data/thika/policies.csv"
+      "policies_file": "data/thika/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "naivasha",
+      "name": "Naivasha",
+      "county": "Nakuru County",
+      "tier": 2,
+      "status": "active",
+      "pop_m": 0.18,
+      "lat": -0.7167,
+      "lon": 36.4333,
+      "zoom": 12,
+      "color": "#00695C",
+      "risk_type": "Lake Naivasha rising (+2.5m 2013-2023) + Malewa River flash floods",
+      "flood_season": "Mar\u2013May, Oct\u2013Nov",
+      "primary_zones": [
+        "Naivasha East",
+        "Kongoni",
+        "Hell's Gate corridor"
+      ],
+      "rivers": [
+        "Malewa River",
+        "Lake Naivasha"
+      ],
+      "incidents_file": "data/naivasha/incidents.csv",
+      "policies_file": "data/naivasha/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "nyeri",
+      "name": "Nyeri",
+      "county": "Nyeri County",
+      "tier": 2,
+      "status": "active",
+      "pop_m": 0.14,
+      "lat": -0.4167,
+      "lon": 36.95,
+      "zoom": 12,
+      "color": "#37474F",
+      "risk_type": "Aberdare ranges runoff + Chania/Gura headwaters",
+      "flood_season": "Mar\u2013May, Oct\u2013Nov",
+      "primary_zones": [
+        "Nyeri Central",
+        "Karatina",
+        "Othaya",
+        "Mukurwe-ini"
+      ],
+      "rivers": [
+        "Chania River",
+        "Gura River"
+      ],
+      "incidents_file": "data/nyeri/incidents.csv",
+      "policies_file": "data/nyeri/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "meru",
+      "name": "Meru",
+      "county": "Meru County",
+      "tier": 2,
+      "status": "active",
+      "pop_m": 0.18,
+      "lat": 0.0467,
+      "lon": 37.65,
+      "zoom": 12,
+      "color": "#4527A0",
+      "risk_type": "Mt Kenya NE slopes + Kathita/Tana tributaries",
+      "flood_season": "Mar\u2013May, Oct\u2013Nov",
+      "primary_zones": [
+        "Imenti North",
+        "Imenti South",
+        "Nkubu"
+      ],
+      "rivers": [
+        "Kathita River",
+        "Mutonga River"
+      ],
+      "incidents_file": "data/meru/incidents.csv",
+      "policies_file": "data/meru/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "homa_bay",
       "name": "Homa Bay",
       "county": "Homa Bay County",
-      "status": "active",
       "tier": 3,
+      "status": "active",
       "pop_m": 0.14,
       "lat": -0.5167,
       "lon": 34.45,
       "zoom": 12,
-      "risk_type": "Lake Victoria shoreline + Homa Bay inlet surge",
+      "color": "#7B1FA2",
+      "risk_type": "Lake Victoria shoreline surge + Homa Bay inlet",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Homa Bay Central",
-        "Ndhiwa",
-        "Mbita"
+        "Ndhiwa"
       ],
       "rivers": [
         "Lake Victoria",
         "Homa Bay Inlet"
       ],
-      "color": "#7B1FA2",
-      "data_quality": "demo",
       "incidents_file": "data/homa_bay/incidents.csv",
-      "policies_file": "data/homa_bay/policies.csv"
+      "policies_file": "data/homa_bay/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "migori",
       "name": "Migori",
       "county": "Migori County",
-      "status": "active",
       "tier": 3,
+      "status": "active",
       "pop_m": 0.09,
       "lat": -1.0667,
       "lon": 34.4667,
       "zoom": 12,
-      "risk_type": "Migori River \u2014 cross-border Tanzania overflow",
+      "color": "#AD1457",
+      "risk_type": "Migori River \u2014 cross-border Tanzania",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Migori Central",
-        "Suna West",
-        "Awendo"
+        "Suna West"
       ],
       "rivers": [
         "Migori River"
       ],
-      "color": "#AD1457",
-      "data_quality": "demo",
       "incidents_file": "data/migori/incidents.csv",
-      "policies_file": "data/migori/policies.csv"
+      "policies_file": "data/migori/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "kitale",
       "name": "Kitale",
       "county": "Trans Nzoia County",
-      "status": "active",
       "tier": 3,
+      "status": "active",
       "pop_m": 0.16,
       "lat": 1.0167,
       "lon": 35.0,
       "zoom": 12,
+      "color": "#00695C",
       "risk_type": "Nzoia headwaters, Elgon slopes runoff",
       "flood_season": "Mar\u2013May, Sep\u2013Nov",
       "primary_zones": [
         "Kitale Central",
-        "Cherangany",
-        "Kiminini"
+        "Cherangany"
       ],
       "rivers": [
-        "Nzoia River (upper)",
-        "Serewe River"
+        "Nzoia River (upper)"
       ],
-      "color": "#00695C",
-      "data_quality": "demo",
       "incidents_file": "data/kitale/incidents.csv",
-      "policies_file": "data/kitale/policies.csv"
+      "policies_file": "data/kitale/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "athi_river",
       "name": "Athi River",
       "county": "Machakos County",
-      "status": "active",
       "tier": 3,
+      "status": "active",
       "pop_m": 0.28,
       "lat": -1.45,
       "lon": 36.9833,
       "zoom": 12,
-      "risk_type": "Athi River industrial corridor flooding, Stoni Athi",
+      "color": "#4527A0",
+      "risk_type": "Athi River industrial corridor, Stoni Athi",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Mavoko Central",
-        "Mavoko North",
         "Syokimau",
         "Mlolongo"
       ],
       "rivers": [
         "Athi River",
-        "Stoni Athi River"
+        "Stoni Athi"
       ],
-      "color": "#4527A0",
-      "data_quality": "demo",
       "incidents_file": "data/athi_river/incidents.csv",
-      "policies_file": "data/athi_river/policies.csv"
+      "policies_file": "data/athi_river/policies.csv",
+      "data_quality": "demo"
     },
     {
       "id": "embu",
       "name": "Embu",
       "county": "Embu County",
-      "status": "active",
       "tier": 3,
+      "status": "active",
       "pop_m": 0.1,
       "lat": -0.5333,
       "lon": 37.45,
       "zoom": 12,
-      "risk_type": "Mt Kenya glacial melt + Tana headwaters, unpredictable timing",
+      "color": "#2E7D32",
+      "risk_type": "Mt Kenya glacial melt + Tana headwaters unpredictable timing",
       "flood_season": "Mar\u2013May, Oct\u2013Nov",
       "primary_zones": [
         "Embu Central",
-        "Runyenjes",
-        "Mbeere North"
+        "Runyenjes"
       ],
       "rivers": [
         "Tana River (upper)",
-        "Thiba River",
-        "Rupingazi River"
+        "Thiba River"
       ],
-      "color": "#2E7D32",
-      "data_quality": "demo",
       "incidents_file": "data/embu/incidents.csv",
-      "policies_file": "data/embu/policies.csv"
+      "policies_file": "data/embu/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "lamu",
+      "name": "Lamu",
+      "county": "Lamu County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.11,
+      "lat": -2.2694,
+      "lon": 40.9022,
+      "zoom": 13,
+      "color": "#F4511E",
+      "risk_type": "Tidal surge + UNESCO Old Town \u2014 irreplaceable heritage at risk",
+      "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
+      "primary_zones": [
+        "Lamu Island",
+        "Mokowe",
+        "Witu"
+      ],
+      "rivers": [
+        "Lamu Channel",
+        "Witu wetlands"
+      ],
+      "incidents_file": "data/lamu/incidents.csv",
+      "policies_file": "data/lamu/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "voi",
+      "name": "Voi",
+      "county": "Taita Taveta County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.09,
+      "lat": -3.3958,
+      "lon": 38.5569,
+      "zoom": 12,
+      "color": "#795548",
+      "risk_type": "Tsavo River + Taita Hills landslide-flood",
+      "flood_season": "Mar\u2013May, Oct\u2013Dec",
+      "primary_zones": [
+        "Voi Central",
+        "Wundanyi",
+        "Mwatate"
+      ],
+      "rivers": [
+        "Tsavo River",
+        "Voi River"
+      ],
+      "incidents_file": "data/voi/incidents.csv",
+      "policies_file": "data/voi/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "isiolo",
+      "name": "Isiolo",
+      "county": "Isiolo County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.08,
+      "lat": 0.3542,
+      "lon": 37.5822,
+      "zoom": 12,
+      "color": "#E65100",
+      "risk_type": "Ewaso Ng'iro seasonal overflow \u2014 ASAL gateway",
+      "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
+      "primary_zones": [
+        "Isiolo Central",
+        "Merti"
+      ],
+      "rivers": [
+        "Ewaso Ng'iro River"
+      ],
+      "incidents_file": "data/isiolo/incidents.csv",
+      "policies_file": "data/isiolo/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "wajir",
+      "name": "Wajir",
+      "county": "Wajir County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.1,
+      "lat": 1.75,
+      "lon": 40.0667,
+      "zoom": 11,
+      "color": "#827717",
+      "risk_type": "Arid zone flash floods \u2014 policy vacuum, pastoral communities",
+      "flood_season": "Apr\u2013Jun, Oct\u2013Dec",
+      "primary_zones": [
+        "Wajir Central",
+        "Habaswein",
+        "Buna"
+      ],
+      "rivers": [
+        "Seasonal wadis"
+      ],
+      "incidents_file": "data/wajir/incidents.csv",
+      "policies_file": "data/wajir/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "machakos",
+      "name": "Machakos",
+      "county": "Machakos County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.16,
+      "lat": -1.5167,
+      "lon": 37.2667,
+      "zoom": 12,
+      "color": "#5D4037",
+      "risk_type": "Mwania River drainage failure + hillside flash floods",
+      "flood_season": "Mar\u2013May, Oct\u2013Nov",
+      "primary_zones": [
+        "Machakos Central",
+        "Mwala",
+        "Kangundo"
+      ],
+      "rivers": [
+        "Mwania River",
+        "Athi tributary"
+      ],
+      "incidents_file": "data/machakos/incidents.csv",
+      "policies_file": "data/machakos/policies.csv",
+      "data_quality": "demo"
+    },
+    {
+      "id": "nanyuki",
+      "name": "Nanyuki",
+      "county": "Laikipia County",
+      "tier": 3,
+      "status": "active",
+      "pop_m": 0.08,
+      "lat": 0.0167,
+      "lon": 37.0667,
+      "zoom": 12,
+      "color": "#1A237E",
+      "risk_type": "Ewaso Ng'iro headwaters, Laikipia plateau flash floods",
+      "flood_season": "Mar\u2013May, Oct\u2013Nov",
+      "primary_zones": [
+        "Laikipia North",
+        "Timau"
+      ],
+      "rivers": [
+        "Ewaso Ng'iro (upper)",
+        "Nanyuki River"
+      ],
+      "incidents_file": "data/nanyuki/incidents.csv",
+      "policies_file": "data/nanyuki/policies.csv",
+      "data_quality": "demo"
     }
   ]
 }
