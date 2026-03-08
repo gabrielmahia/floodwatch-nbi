@@ -216,7 +216,8 @@ with st.sidebar:
 - Policy accountability
 - City benchmarks
 - Risk calculator
-- Community reports""")
+- Community reports
+- **Action Recommendations** — ranked briefs for decision-makers""")
     st.divider()
     st.markdown("### Design principle")
     st.markdown("*The enforcement gap is the story. Every feature connects back to the distance between policy existence and implementation.*")
