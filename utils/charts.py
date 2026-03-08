@@ -1,419 +1,284 @@
-"""
-FloodWatch NBI — Plotly chart builders and risk calculator.
-
-All figures use a shared dark theme via dark_layout().
-No global state — every function takes its data as arguments.
-"""
+"""Plotly figures and risk calculator for FloodWatch NBI."""
 from __future__ import annotations
-
-import numpy as np
-import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+import pandas as pd
 
-# ── Shared theme ────────────────────────────────────────────────
 
-BG        = "#0F172A"
-CARD_BG   = "#1E293B"
-TEXT      = "#F1F5F9"
-MUTED     = "#94A3B8"
-RED       = "#EF4444"
-ORANGE    = "#F97316"
-YELLOW    = "#EAB308"
-GREEN     = "#22C55E"
-BLUE      = "#3B82F6"
-PURPLE    = "#A855F7"
+# ── Theme helper ──────────────────────────────────────────────────────────────
+
+def dark_layout(fig: go.Figure, title: str = "", height: int = 400) -> go.Figure:
+    fig.update_layout(
+        title=dict(text=title, font=dict(size=16, color="#E8E8E8")),
+        paper_bgcolor="#1A1F2E",
+        plot_bgcolor="#1A1F2E",
+        font=dict(color="#E8E8E8"),
+        height=height,
+        margin=dict(l=40, r=20, t=50, b=40),
+        legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="rgba(255,255,255,0.1)"),
+    )
+    fig.update_xaxes(gridcolor="rgba(255,255,255,0.08)", zerolinecolor="rgba(255,255,255,0.15)")
+    fig.update_yaxes(gridcolor="rgba(255,255,255,0.08)", zerolinecolor="rgba(255,255,255,0.15)")
+    return fig
+
 
 SEVERITY_COLORS = {
-    "Critical": RED,
-    "High":     ORANGE,
-    "Medium":   YELLOW,
-    "Low":      GREEN,
+    "Critical": "#FF3333",
+    "High":     "#FF6B35",
+    "Medium":   "#FFB347",
+    "Low":      "#4CAF50",
 }
 
 STATUS_COLORS = {
-    "Completed":               GREEN,
-    "Partially Implemented":   BLUE,
-    "Stalled":                 YELLOW,
-    "Not Enforced":            ORANGE,
-    "Not Started":             RED,
-    "Draft Only":              PURPLE,
+    "Completed":              "#4CAF50",
+    "Partially Implemented":  "#FFB347",
+    "Stalled":                "#FF6B35",
+    "Not Enforced":           "#FF3333",
+    "Not Started":            "#9E9E9E",
+    "Draft Only":             "#607D8B",
 }
 
 
-def dark_layout(fig: go.Figure, title: str = "", height: int = 420) -> go.Figure:
-    """Apply consistent dark theme to any Plotly figure."""
-    fig.update_layout(
-        title=dict(text=title, font=dict(color=TEXT, size=14), x=0),
-        paper_bgcolor=BG,
-        plot_bgcolor=CARD_BG,
-        font=dict(color=TEXT, family="monospace"),
-        height=height,
-        margin=dict(l=20, r=20, t=50, b=20),
-        legend=dict(bgcolor=BG, bordercolor=CARD_BG),
-        xaxis=dict(gridcolor="#334155", zerolinecolor="#334155"),
-        yaxis=dict(gridcolor="#334155", zerolinecolor="#334155"),
-    )
-    return fig
-
-
-# ── Risk calculator ─────────────────────────────────────────────
+# ── Risk calculator ───────────────────────────────────────────────────────────
 
 def calculate_risk_score(
-    population_density: float,      # persons/hectare
-    drainage_coverage: float,       # % 0–100
-    distance_from_river_m: float,   # metres
-    riparian_compliant: bool,       # True = compliant = lower risk
-    slope_pct: float,               # % gradient
-    soil_permeability: float,       # 0.0 (clay) to 1.0 (sandy)
+    population_density: float,
+    drainage_coverage: float,
+    distance_from_river_m: float,
+    riparian_compliant: bool,
+    slope_pct: float,
+    soil_permeability: float,
 ) -> float:
-    """Compute composite flood risk score (0–100).
+    """Composite flood risk score 0–100.
 
-    Component weights (sum = 100):
-      Density penalty     25 — high density increases exposure
-      Drainage gap        20 — low coverage increases inundation risk
-      River proximity     25 — distance decay from flood corridor
-      Riparian violation  15 — direct riparian encroachment
-      Terrain flatness    10 — flat terrain reduces runoff speed
-      Soil impermeability  5 — clay soils increase surface water
+    Component weights:
+        population_density   25% — higher density = more people at risk
+        drainage_gap         20% — (100 - drainage_coverage)
+        river_proximity      25% — closer = higher risk
+        riparian_violation   15% — non-compliant adds fixed risk
+        flat_terrain         10% — low slope = water pools
+        soil_impermeability   5% — clay soils increase runoff
 
-    Returns: float in [0, 100] where 100 = maximum risk.
+    Args:
+        population_density:    persons/hectare (0–1000)
+        drainage_coverage:     % coverage (0–100)
+        distance_from_river_m: metres from nearest river/stream (0–2000)
+        riparian_compliant:    True = compliant (lower risk)
+        slope_pct:             terrain gradient % (0–30)
+        soil_permeability:     0.0 = clay (high runoff) to 1.0 = sandy (low runoff)
+
+    Returns:
+        float: risk score 0–100
     """
-    # Density (0–25): scale 0–500 persons/ha → 0–25
-    density_score = min(population_density / 500, 1.0) * 25
+    # Normalise each component to 0–1 (1 = maximum risk)
+    density_score   = min(population_density / 500.0, 1.0)
+    drainage_score  = max(0.0, (100.0 - drainage_coverage) / 100.0)
+    proximity_score = max(0.0, 1.0 - (distance_from_river_m / 500.0))
+    riparian_score  = 1.0 if not riparian_compliant else 0.0
+    flat_score      = max(0.0, 1.0 - (slope_pct / 10.0))
+    soil_score      = 1.0 - soil_permeability
 
-    # Drainage gap (0–20): gap = 100 - coverage
-    drainage_score = (1 - min(drainage_coverage, 100) / 100) * 20
-
-    # River proximity (0–25): decay from 0m (max risk) to 500m+ (zero)
-    proximity_score = max(0, 1 - distance_from_river_m / 500) * 25
-
-    # Riparian violation (0–15): non-compliant = full penalty
-    riparian_score = 15 if riparian_compliant else 0
-
-    # Terrain flatness (0–10): flat (0% slope) = max penalty
-    terrain_score = max(0, 1 - slope_pct / 20) * 10
-
-    # Soil (0–5): clay (0.0) = max impermeability penalty
-    soil_score = (1 - min(soil_permeability, 1.0)) * 5
-
-    raw = density_score + drainage_score + proximity_score + riparian_score + terrain_score + soil_score
-    return round(min(max(raw, 0), 100), 1)
+    raw = (
+        density_score   * 25
+        + drainage_score  * 20
+        + proximity_score * 25
+        + riparian_score  * 15
+        + flat_score      * 10
+        + soil_score      *  5
+    )
+    return round(min(max(raw, 0.0), 100.0), 1)
 
 
-def risk_gauge(score: float) -> go.Figure:
-    """Gauge chart for a single risk score."""
-    if score >= 70:
-        color = RED
-        label = "CRITICAL"
-    elif score >= 50:
-        color = ORANGE
-        label = "HIGH"
-    elif score >= 30:
-        color = YELLOW
-        label = "MEDIUM"
-    else:
-        color = GREEN
-        label = "LOW"
-
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=score,
-        number={"font": {"color": color, "size": 36, "family": "monospace"}},
-        gauge={
-            "axis": {"range": [0, 100], "tickcolor": MUTED, "tickfont": {"color": MUTED}},
-            "bar":  {"color": color},
-            "bgcolor": CARD_BG,
-            "steps": [
-                {"range": [0,  30], "color": "#14532D"},
-                {"range": [30, 50], "color": "#713F12"},
-                {"range": [50, 70], "color": "#7C2D12"},
-                {"range": [70, 100], "color": "#450A0A"},
-            ],
-            "threshold": {"line": {"color": "white", "width": 3}, "value": score},
-        },
-        title={"text": f"Composite Risk Score — {label}", "font": {"color": TEXT, "size": 13}},
-    ))
-    fig.update_layout(paper_bgcolor=BG, font={"color": TEXT}, height=300,
-                      margin=dict(l=20, r=20, t=40, b=10))
-    return fig
-
-
-# ── Incident charts ─────────────────────────────────────────────
+# ── Chart functions ───────────────────────────────────────────────────────────
 
 def flood_timeline_chart(df: pd.DataFrame) -> go.Figure:
     """Scatter: time × displaced, bubble size = deaths, colour = severity."""
-    fig = px.scatter(
-        df,
-        x="date", y="displaced",
-        size="deaths", color="severity",
-        color_discrete_map=SEVERITY_COLORS,
-        hover_data=["location", "cause", "response_days", "policy_enforced"],
-        labels={"displaced": "Persons Displaced", "date": ""},
-        size_max=40,
-    )
-    dark_layout(fig, "Flood Timeline — Displacement & Deaths", 380)
-    return fig
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"])
+    df["size"]  = (df["deaths"] * 8 + 20).clip(upper=120)
+    df["severity_color"] = df["severity"].map(SEVERITY_COLORS).fillna("#888")
+
+    fig = go.Figure()
+    for severity, color in SEVERITY_COLORS.items():
+        sub = df[df["severity"] == severity]
+        if sub.empty:
+            continue
+        fig.add_trace(go.Scatter(
+            x=sub["date"], y=sub["displaced"],
+            mode="markers",
+            name=severity,
+            marker=dict(size=sub["size"], color=color, opacity=0.8,
+                        line=dict(color="white", width=1)),
+            customdata=sub[["location", "deaths", "cause", "policy_enforced"]].values,
+            hovertemplate=(
+                "<b>%{customdata[0]}</b><br>"
+                "Displaced: %{y:,}<br>"
+                "Deaths: %{customdata[1]}<br>"
+                "Cause: %{customdata[2]}<br>"
+                "Policy enforced: %{customdata[3]}<extra></extra>"
+            ),
+        ))
+    fig.update_layout(xaxis_title="Date", yaxis_title="Persons Displaced")
+    return dark_layout(fig, "Flood Incidents — Timeline", 420)
 
 
 def zone_impact_bar(df: pd.DataFrame) -> go.Figure:
     """Horizontal bar: displaced + deaths by zone."""
-    zone = df.groupby("zone").agg(
-        total_displaced=("displaced", "sum"),
-        total_deaths=("deaths", "sum"),
+    g = df.groupby("zone").agg(
+        displaced=("displaced", "sum"),
+        deaths=("deaths", "sum"),
         incidents=("date", "count"),
-    ).reset_index().sort_values("total_displaced", ascending=True)
+    ).sort_values("displaced", ascending=True).reset_index()
 
     fig = go.Figure()
     fig.add_trace(go.Bar(
-        y=zone["zone"], x=zone["total_displaced"],
-        name="Displaced", orientation="h",
-        marker_color=ORANGE, opacity=0.85,
+        y=g["zone"], x=g["displaced"], name="Displaced",
+        orientation="h", marker_color="#FF6B35",
+        hovertemplate="%{y}<br>Displaced: %{x:,}<extra></extra>",
     ))
     fig.add_trace(go.Bar(
-        y=zone["zone"], x=zone["total_deaths"] * 100,
-        name="Deaths ×100", orientation="h",
-        marker_color=RED, opacity=0.85,
+        y=g["zone"], x=g["deaths"] * 50, name="Deaths (×50)",
+        orientation="h", marker_color="#FF3333", opacity=0.7,
+        hovertemplate="%{y}<br>Deaths: %{x:.0f}<extra></extra>",
     ))
-    dark_layout(fig, "Impact by Zone", 380)
-    fig.update_layout(barmode="overlay")
-    return fig
+    fig.update_layout(barmode="overlay", xaxis_title="Persons", yaxis_title="")
+    return dark_layout(fig, "Impact by Zone", 380)
 
 
 def enforcement_gap_chart(df: pd.DataFrame) -> go.Figure:
-    """Bar: incidents grouped by policy_existed × policy_enforced."""
-    df = df.copy()
-    df["status"] = df.apply(lambda r: (
-        "Policy enforced" if r["policy_existed"] and r["policy_enforced"] else
-        "Policy existed, not enforced" if r["policy_existed"] else
-        "No policy existed"
-    ), axis=1)
-    counts = df.groupby("status").agg(
-        incidents=("date", "count"),
-        deaths=("deaths", "sum"),
-        displaced=("displaced", "sum"),
-    ).reset_index()
+    """Grouped bar: incidents where policy existed vs enforced."""
+    total     = len(df)
+    existed   = df["policy_existed"].sum()
+    enforced  = df["policy_enforced"].sum()
+    gap       = existed - enforced
 
-    COLOR_MAP = {
-        "Policy enforced":             GREEN,
-        "Policy existed, not enforced": ORANGE,
-        "No policy existed":            RED,
-    }
-    fig = px.bar(counts, x="status", y="incidents",
-                 color="status", color_discrete_map=COLOR_MAP,
-                 text="deaths",
-                 labels={"incidents": "Incidents", "status": ""},
-                 hover_data=["displaced"])
-    fig.update_traces(texttemplate="%{text} deaths", textposition="outside")
-    dark_layout(fig, "The Enforcement Gap — Policy vs Reality", 360)
-    fig.update_layout(showlegend=False)
-    return fig
+    fig = go.Figure(go.Bar(
+        x=["Total Incidents", "Policy Existed", "Policy Enforced", "Enforcement Gap"],
+        y=[total, existed, enforced, gap],
+        marker_color=["#607D8B", "#FFB347", "#4CAF50", "#FF3333"],
+        text=[total, existed, enforced, gap],
+        textposition="outside",
+    ))
+    fig.update_layout(yaxis_title="Incidents", showlegend=False)
+    return dark_layout(fig, "The Enforcement Gap", 360)
 
 
-def seasonality_chart(df: pd.DataFrame) -> go.Figure:
-    """Bar: incident count + deaths by month."""
-    df = df.copy()
-    df["month"] = pd.to_datetime(df["date"]).dt.strftime("%b")
-    df["month_num"] = pd.to_datetime(df["date"]).dt.month
-    monthly = df.groupby(["month", "month_num"]).agg(
-        incidents=("date", "count"),
-        deaths=("deaths", "sum"),
-    ).reset_index().sort_values("month_num")
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Bar(
-        x=monthly["month"], y=monthly["incidents"],
-        name="Incidents", marker_color=BLUE, opacity=0.7,
-    ), secondary_y=False)
-    fig.add_trace(go.Scatter(
-        x=monthly["month"], y=monthly["deaths"],
-        name="Deaths", mode="lines+markers",
-        line=dict(color=RED, width=2),
-        marker=dict(size=8),
-    ), secondary_y=True)
-    dark_layout(fig, "Seasonality — Long Rains (Mar–May) and Short Rains (Oct–Dec)", 360)
-    fig.update_yaxes(title_text="Incidents", secondary_y=False, gridcolor="#334155")
-    fig.update_yaxes(title_text="Deaths", secondary_y=True, gridcolor="#334155")
-    return fig
-
-
-def cause_treemap(df: pd.DataFrame) -> go.Figure:
-    """Treemap: cause → severity → displaced."""
-    fig = px.treemap(
-        df, path=["cause", "severity"],
-        values="displaced", color="deaths",
-        color_continuous_scale=["#1E293B", RED],
-        labels={"displaced": "Displaced", "deaths": "Deaths"},
-    )
-    fig.update_layout(paper_bgcolor=BG, font=dict(color=TEXT), height=380,
-                      margin=dict(l=0, r=0, t=30, b=0))
-    return fig
-
-
-# ── Policy charts ───────────────────────────────────────────────
-
-def policy_status_donut(df: pd.DataFrame) -> go.Figure:
+def policy_status_sunburst(df: pd.DataFrame) -> go.Figure:
     """Donut: policy status distribution."""
     counts = df["status"].value_counts().reset_index()
     counts.columns = ["status", "count"]
-    colors = [STATUS_COLORS.get(s, MUTED) for s in counts["status"]]
+    colors = [STATUS_COLORS.get(s, "#888") for s in counts["status"]]
 
     fig = go.Figure(go.Pie(
         labels=counts["status"], values=counts["count"],
-        hole=0.55,
-        marker=dict(colors=colors, line=dict(color=BG, width=2)),
-        textinfo="label+value",
-        textfont=dict(color=TEXT, size=11),
+        hole=0.5, marker_colors=colors,
+        textinfo="label+percent",
+        hovertemplate="%{label}<br>Count: %{value}<extra></extra>",
     ))
-    implemented = df[df["status"] == "Completed"].shape[0]
-    fig.add_annotation(
-        text=f"{implemented}/{len(df)}<br><span style='font-size:10px'>Completed</span>",
-        x=0.5, y=0.5, showarrow=False,
-        font=dict(size=20, color=GREEN if implemented > 2 else RED),
-    )
-    dark_layout(fig, "Policy Implementation Status", 360)
-    fig.update_layout(showlegend=False)
-    return fig
+    return dark_layout(fig, "Policy Status Distribution", 380)
 
 
 def budget_gap_chart(df: pd.DataFrame) -> go.Figure:
-    """Stacked bar: allocated vs utilised budget per policy."""
-    df = df.sort_values("budget_allocated_ksh_m", ascending=True)
-    utilized = df["budget_allocated_ksh_m"] * df["budget_utilized_pct"] / 100
-    gap       = df["budget_allocated_ksh_m"] - utilized
+    """Stacked bar: allocated vs utilised per policy."""
+    df = df.copy()
+    df["utilized_ksh_m"] = df["budget_allocated_ksh_m"] * df["budget_utilized_pct"] / 100
+    df["unused_ksh_m"]   = df["budget_allocated_ksh_m"] - df["utilized_ksh_m"]
+    df = df[df["budget_allocated_ksh_m"] > 0].sort_values("budget_allocated_ksh_m", ascending=False)
+    short_names = df["name"].str[:35]
 
     fig = go.Figure()
     fig.add_trace(go.Bar(
-        y=df["name"].str[:40], x=utilized,
-        name="Utilised", orientation="h",
-        marker_color=GREEN, opacity=0.85,
+        y=short_names, x=df["utilized_ksh_m"], name="Utilised",
+        orientation="h", marker_color="#4CAF50",
+        hovertemplate="%{y}<br>Utilised: KSh %{x:.0f}M<extra></extra>",
     ))
     fig.add_trace(go.Bar(
-        y=df["name"].str[:40], x=gap,
-        name="Unspent", orientation="h",
-        marker_color=RED, opacity=0.6,
+        y=short_names, x=df["unused_ksh_m"], name="Unspent",
+        orientation="h", marker_color="#FF3333",
+        hovertemplate="%{y}<br>Unspent: KSh %{x:.0f}M<extra></extra>",
     ))
-    dark_layout(fig, "Budget Allocation vs Utilisation (KSh M)", 480)
-    fig.update_layout(barmode="stack")
-    return fig
+    fig.update_layout(barmode="stack", xaxis_title="KSh Millions", yaxis_title="",
+                      height=420)
+    return dark_layout(fig, "Budget Allocated vs Utilised", 440)
 
 
-def blocking_factor_bar(df: pd.DataFrame) -> go.Figure:
-    """Bar: blocker taxonomy frequency."""
-    # Extract primary blocker category (first phrase before em-dash)
+def blocker_treemap(df: pd.DataFrame) -> go.Figure:
+    """Treemap of blocking factors, sized by lives at risk."""
     df = df[df["status"] != "Completed"].copy()
-    df["blocker_short"] = df["blocking_factor"].str.split(" — ").str[0].str.strip()
-    counts = df["blocker_short"].value_counts().reset_index()
-    counts.columns = ["blocker", "count"]
-
-    fig = px.bar(counts, x="count", y="blocker", orientation="h",
-                 color="count", color_continuous_scale=[BLUE, RED],
-                 labels={"count": "Policies blocked", "blocker": ""})
-    dark_layout(fig, "What Is Blocking Implementation?", 320)
-    fig.update_layout(coloraxis_showscale=False)
-    return fig
-
-
-def lives_at_risk_bar(df: pd.DataFrame) -> go.Figure:
-    """Bar: lives saved estimate by policy, coloured by status."""
-    df = df[df["status"] != "Completed"].sort_values("lives_saved_estimate", ascending=True)
-    colors = [STATUS_COLORS.get(s, MUTED) for s in df["status"]]
-
-    fig = go.Figure(go.Bar(
-        y=df["name"].str[:38], x=df["lives_saved_estimate"],
-        orientation="h",
-        marker_color=colors,
-        text=df["status"],
-        textposition="outside",
-    ))
-    dark_layout(fig, "Lives Saved if Fully Implemented — Unimplemented Policies", 480)
-    return fig
+    short = df["blocking_factor"].str.split(" and ").str[0].str.split(",").str[0].str[:40]
+    fig = px.treemap(
+        df, path=[short], values="lives_saved_estimate",
+        color="lives_saved_estimate",
+        color_continuous_scale=[[0, "#1A1F2E"], [0.5, "#FF6B35"], [1, "#FF3333"]],
+        hover_data={"name": True, "blocking_factor": True},
+    )
+    fig.update_traces(textinfo="label+value")
+    return dark_layout(fig, "Blocking Factors — Lives at Risk (by estimated lives saved if resolved)", 400)
 
 
-# ── City benchmark charts ───────────────────────────────────────
-
-def resilience_radar(cities: list[dict], selected: list[str]) -> go.Figure:
-    """Polar radar comparing selected cities across 5 resilience dimensions."""
-    DIMS = [
+def resilience_radar(cities: list[dict]) -> go.Figure:
+    """Polar radar comparing resilience dimensions across cities."""
+    dimensions = [
         ("riparian_compliance_pct", "Riparian
-Compliance %"),
+Compliance"),
         ("drainage_coverage_pct",   "Drainage
-Coverage %"),
-        ("early_warning_hours",     "Early Warning
-(hrs, capped 72)"),
-        ("flood_budget_usd_per_capita", "Budget
-USD/capita"),
+Coverage"),
+        ("early_warning_hours",     "Early
+Warning"),
+        ("flood_budget_usd_per_capita", "Flood Budget
+(USD/capita)"),
         ("resilience_score",        "Overall
-Score"),
+Resilience"),
     ]
-
     # Normalise each dimension to 0–100
-    def norm(cities_data, key, cap=None):
-        vals = [c[key] for c in cities_data]
-        mx = cap if cap else max(vals)
-        return {c["name"]: min(c[key] / mx * 100, 100) for c in cities_data}
-
-    norms = {
-        "riparian_compliance_pct":    norm(cities, "riparian_compliance_pct"),
-        "drainage_coverage_pct":      norm(cities, "drainage_coverage_pct"),
-        "early_warning_hours":        norm(cities, "early_warning_hours", cap=72),
-        "flood_budget_usd_per_capita":norm(cities, "flood_budget_usd_per_capita"),
-        "resilience_score":           norm(cities, "resilience_score"),
+    max_vals = {
+        "riparian_compliance_pct":     100,
+        "drainage_coverage_pct":       100,
+        "early_warning_hours":         72,
+        "flood_budget_usd_per_capita": 320,
+        "resilience_score":            100,
     }
-
-    COLORS = [RED, BLUE, GREEN, ORANGE, PURPLE, YELLOW]
-    labels = [d[1] for d in DIMS]
+    labels = [d[1] for d in dimensions]
 
     fig = go.Figure()
-    for i, city in enumerate([c for c in cities if c["name"] in selected]):
-        vals = [norms[d[0]][city["name"]] for d in DIMS]
-        vals.append(vals[0])  # close the polygon
+    for city in cities:
+        values = [
+            min(city.get(d[0], 0) / max_vals[d[0]] * 100, 100)
+            for d in dimensions
+        ]
+        values.append(values[0])  # close the polygon
         fig.add_trace(go.Scatterpolar(
-            r=vals,
-            theta=labels + [labels[0]],
-            name=city["name"],
-            line=dict(color=COLORS[i % len(COLORS)], width=2),
-            fill="toself",
-            fillcolor=COLORS[i % len(COLORS)],
-            opacity=0.15,
+            r=values, theta=labels + [labels[0]],
+            fill="toself", name=city["name"],
+            line=dict(color=city.get("color", "#888")),
+            fillcolor=city.get("color", "#888"),
+            opacity=0.25,
         ))
     fig.update_layout(
         polar=dict(
-            bgcolor=CARD_BG,
-            radialaxis=dict(visible=True, range=[0, 100], color=MUTED, gridcolor="#334155"),
-            angularaxis=dict(color=TEXT, gridcolor="#334155"),
+            bgcolor="#1A1F2E",
+            radialaxis=dict(visible=True, range=[0, 100],
+                            tickfont=dict(color="#888"), gridcolor="rgba(255,255,255,0.1)"),
+            angularaxis=dict(tickfont=dict(color="#E8E8E8"), gridcolor="rgba(255,255,255,0.1)"),
         ),
-        paper_bgcolor=BG,
-        font=dict(color=TEXT, family="monospace"),
-        height=420,
-        legend=dict(bgcolor=BG),
-        margin=dict(l=40, r=40, t=40, b=40),
-        title=dict(text="City Resilience Radar (normalised dimensions)", font=dict(color=TEXT, size=13)),
+        legend=dict(orientation="h", yanchor="bottom", y=-0.25),
     )
-    return fig
+    return dark_layout(fig, "Resilience Dimensions — City Comparison", 500)
 
 
-def resilience_scatter(cities: list[dict]) -> go.Figure:
-    """Scatter: budget per capita × deaths per event, size = population."""
+def deaths_per_event_scatter(cities: list[dict]) -> go.Figure:
+    """Scatter: resilience score vs deaths per event."""
+    df = pd.DataFrame(cities)
     fig = px.scatter(
-        cities,
-        x="flood_budget_usd_per_capita",
-        y="deaths_per_event_avg",
-        size="population_m",
-        color="resilience_score",
-        color_continuous_scale=["#450A0A", YELLOW, GREEN],
-        hover_name="name",
-        hover_data=["country", "resilience_score", "key_intervention"],
-        labels={
-            "flood_budget_usd_per_capita": "Flood Budget (USD/capita)",
-            "deaths_per_event_avg":        "Deaths per Flood Event (avg)",
-            "resilience_score":            "Resilience Score",
-        },
-        size_max=50,
+        df, x="resilience_score", y="deaths_per_event_avg",
+        size="flood_budget_usd_per_capita",
+        color="name", color_discrete_map={c["name"]: c["color"] for c in cities},
         text="name",
+        size_max=45,
+        hover_data=["country", "population_m", "key_intervention"],
     )
     fig.update_traces(textposition="top center")
-    dark_layout(fig, "Budget vs Deaths — The Investment Curve", 420)
-    fig.update_layout(coloraxis_colorbar=dict(title="Resilience<br>Score", tickfont=dict(color=TEXT)))
-    return fig
+    fig.update_layout(showlegend=False,
+                      xaxis_title="Resilience Score (0–100)",
+                      yaxis_title="Deaths per Flood Event (avg)")
+    return dark_layout(fig, "Resilience Score vs Deaths per Event (bubble = flood budget/capita)", 460)
