@@ -24,7 +24,7 @@ _st_banner.info(
 del _st_banner
 
 st.set_page_config(
-    page_title="FloodWatch Kenya",
+    page_title="Mafuriko — Flood Intelligence Kenya",
     page_icon="🌊",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -73,7 +73,7 @@ if ALERT_ACTIVE:
     """, unsafe_allow_html=True)
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.markdown("# 🌊 FloodWatch Kenya")
+st.markdown("# 🌊 Mafuriko — Flood Intelligence Kenya")
 st.markdown(
     f"Urban flood resilience intelligence across **{len(cities)} Kenyan cities**. "
     "Tracking incidents, policy accountability, and the enforcement gap."
@@ -248,7 +248,7 @@ if not incidents.empty:
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## 🌊 FloodWatch Kenya")
+    st.markdown("## 🌊 Mafuriko — Flood Intelligence Kenya")
     st.markdown("**v2.0.0**")
     st.divider()
     st.markdown(f"**{len(cities)} cities** · **{total_incidents} incidents** · **{total_policies} policies**")
