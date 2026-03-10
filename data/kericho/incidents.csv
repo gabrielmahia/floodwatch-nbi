@@ -1,11 +1,11 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-04-29,Kericho Town Centre,Kericho Central,-0.3667,35.2833,Critical,11,2400,Landslide-flood,32.0,3,True,False
-2023-04-28,Kipkelion East,Kipkelion East,-0.2167,35.4167,High,4,1800,Flash flood,14.0,4,True,False
-2022-11-10,Ainamoi,Ainamoi,-0.3500,35.2500,High,2,1200,River overflow,7.5,5,True,False
-2022-05-05,Londiani,Kipkelion West,-0.1667,35.5833,Medium,1,700,Flash flood,4.0,7,False,False
-2021-11-15,Kericho Town,Kericho Central,-0.3667,35.2833,High,3,1600,Drainage failure,9.0,5,True,False
-2021-04-22,Sigowet,Sigowet/Soin,-0.5000,35.1667,High,4,2100,River overflow,12.0,4,True,False
-2020-11-08,Bureti,Bureti,-0.5500,35.0833,Critical,6,2800,Landslide-flood,22.0,3,True,False
-2019-05-10,Kericho Town,Kericho Central,-0.3667,35.2833,High,2,1400,Flash flood,8.0,5,True,False
-2018-11-20,Ainamoi,Ainamoi,-0.3500,35.2500,Medium,1,900,Drainage failure,3.5,8,False,False
-2017-04-25,Kipkelion,Kipkelion East,-0.2167,35.4167,High,3,1700,River overflow,10.5,5,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-04-29,Kericho Town Centre,Kericho Central,-0.3667,35.2833,Critical,11,2400,Landslide-flood,32.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-28,Kipkelion East,Kipkelion East,-0.2167,35.4167,High,4,1800,Flash flood,14.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-10,Ainamoi,Ainamoi,-0.35,35.25,High,2,1200,River overflow,7.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-05,Londiani,Kipkelion West,-0.1667,35.5833,Medium,1,700,Flash flood,4.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-15,Kericho Town,Kericho Central,-0.3667,35.2833,High,3,1600,Drainage failure,9.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-22,Sigowet,Sigowet/Soin,-0.5,35.1667,High,4,2100,River overflow,12.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-08,Bureti,Bureti,-0.55,35.0833,Critical,6,2800,Landslide-flood,22.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-05-10,Kericho Town,Kericho Central,-0.3667,35.2833,High,2,1400,Flash flood,8.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-20,Ainamoi,Ainamoi,-0.35,35.25,Medium,1,900,Drainage failure,3.5,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-04-25,Kipkelion,Kipkelion East,-0.2167,35.4167,High,3,1700,River overflow,10.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

@@ -1,16 +1,16 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-20,Kisauni Shanzu,Kisauni,-3.9667,39.7000,High,2,1800,Coastal flooding,8.5,5,True,False
-2023-04-26,Likoni Ferry Area,Likoni,-4.0833,39.6667,Critical,5,3400,Tidal surge,22.0,4,True,False
-2022-11-15,Tudor Creek Waterfront,Mvita,-4.0500,39.6833,High,2,2100,River overflow,9.0,5,True,False
-2022-05-05,Changamwe,Changamwe,-4.0167,39.6500,High,3,2600,Flash flood,11.5,4,True,False
-2021-11-08,Kisauni Bamburi,Kisauni,-3.9833,39.7167,Critical,6,4200,Coastal flooding,24.0,3,True,False
-2021-04-22,Likoni,Likoni,-4.0833,39.6667,High,2,2800,Tidal surge,10.0,5,True,False
-2020-11-18,Nyali,Nyali,-4.0167,39.7167,Medium,1,1200,Drainage failure,5.0,7,False,False
-2020-05-12,Changamwe Industrial,Changamwe,-4.0167,39.6500,High,1,1600,Flash flood,7.5,6,True,False
-2019-11-10,Tudor Creek,Mvita,-4.0500,39.6833,High,3,2400,River overflow,12.0,4,True,False
-2019-04-30,Likoni Shelly Beach,Likoni,-4.1000,39.6833,Critical,7,5100,Tidal surge,28.0,3,True,False
-2018-11-22,Kisauni Frere Town,Kisauni,-4.0000,39.6833,High,2,1900,Coastal flooding,8.0,5,True,False
-2018-05-08,Jomvu,Jomvu,-4.0500,39.7167,Medium,1,1400,Flash flood,4.5,8,False,False
-2017-05-14,Changamwe,Changamwe,-4.0167,39.6500,High,3,2200,Flash flood,9.0,5,True,False
-2016-11-05,Likoni,Likoni,-4.0833,39.6667,Critical,8,5800,Tidal surge,32.0,3,True,False
-2015-04-28,Tudor Creek,Mvita,-4.0500,39.6833,High,4,3100,River overflow,14.0,4,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-20,Kisauni Shanzu,Kisauni,-3.9667,39.7,High,2,1800,Coastal flooding,8.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-26,Likoni Ferry Area,Likoni,-4.0833,39.6667,Critical,5,3400,Tidal surge,22.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-15,Tudor Creek Waterfront,Mvita,-4.05,39.6833,High,2,2100,River overflow,9.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-05,Changamwe,Changamwe,-4.0167,39.65,High,3,2600,Flash flood,11.5,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-08,Kisauni Bamburi,Kisauni,-3.9833,39.7167,Critical,6,4200,Coastal flooding,24.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-22,Likoni,Likoni,-4.0833,39.6667,High,2,2800,Tidal surge,10.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-18,Nyali,Nyali,-4.0167,39.7167,Medium,1,1200,Drainage failure,5.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-05-12,Changamwe Industrial,Changamwe,-4.0167,39.65,High,1,1600,Flash flood,7.5,6,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-11-10,Tudor Creek,Mvita,-4.05,39.6833,High,3,2400,River overflow,12.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-04-30,Likoni Shelly Beach,Likoni,-4.1,39.6833,Critical,7,5100,Tidal surge,28.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-22,Kisauni Frere Town,Kisauni,-4.0,39.6833,High,2,1900,Coastal flooding,8.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-05-08,Jomvu,Jomvu,-4.05,39.7167,Medium,1,1400,Flash flood,4.5,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-05-14,Changamwe,Changamwe,-4.0167,39.65,High,3,2200,Flash flood,9.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2016-11-05,Likoni,Likoni,-4.0833,39.6667,Critical,8,5800,Tidal surge,32.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2015-04-28,Tudor Creek,Mvita,-4.05,39.6833,High,4,3100,River overflow,14.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

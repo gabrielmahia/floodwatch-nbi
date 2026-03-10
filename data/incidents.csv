@@ -1,16 +1,16 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2024-04-24,Mathare Valley,Mathare,-1.2638,36.8556,Critical,15,1200,River overflow,45.0,3,True,False
-2024-04-24,Mukuru Kwa Njenga,Mukuru,-1.3085,36.8762,Critical,8,860,River overflow,28.5,4,True,False
-2024-04-22,Kariobangi South,Eastlands,-1.2756,36.8814,High,3,430,Flash flood,12.0,5,True,False
-2024-04-22,Pipeline Estate,Mukuru,-1.3167,36.8700,High,2,380,Drainage failure,9.5,6,True,False
-2024-04-21,Korogocho,Kasarani,-1.2311,36.8919,High,4,510,River overflow,15.5,4,True,False
-2024-04-20,Kibera Soweto East,Kibera,-1.3125,36.7919,Critical,6,920,Flash flood,22.0,5,True,False
-2024-03-15,Ruaraka,Kasarani,-1.2456,36.8778,Medium,1,180,Drainage failure,5.5,7,True,False
-2024-03-13,Githurai 44,Kasarani,-1.2003,36.9014,Medium,0,240,Flash flood,4.0,8,False,False
-2024-03-10,Njiru,Kasarani,-1.2089,36.9278,Low,0,95,Drainage failure,2.0,12,False,False
-2024-01-28,Eastleigh Section 3,Eastlands,-1.2756,36.8517,High,2,350,Flash flood,11.0,5,True,False
-2023-11-20,Zimmerman,Kasarani,-1.2178,36.9014,Medium,1,160,Drainage failure,4.5,9,True,False
-2023-11-18,Roysambu,Kasarani,-1.2156,36.9003,Low,0,120,Flash flood,2.5,11,False,False
-2023-05-08,South B,Langata,-1.3003,36.8261,Medium,0,200,Drainage failure,6.0,7,True,False
-2023-05-06,Ongata Rongai,Kajiado North,-1.3917,36.7736,High,1,310,River overflow,9.0,5,True,False
-2022-11-12,Westlands Flood Plain,Westlands,-1.2647,36.8031,High,2,285,River overflow,14.0,4,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2024-04-24,Mathare Valley,Mathare,-1.2638,36.8556,Critical,15,1200,River overflow,45.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-04-24,Mukuru Kwa Njenga,Mukuru,-1.3085,36.8762,Critical,8,860,River overflow,28.5,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-04-22,Kariobangi South,Eastlands,-1.2756,36.8814,High,3,430,Flash flood,12.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-04-22,Pipeline Estate,Mukuru,-1.3167,36.87,High,2,380,Drainage failure,9.5,6,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-04-21,Korogocho,Kasarani,-1.2311,36.8919,High,4,510,River overflow,15.5,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-04-20,Kibera Soweto East,Kibera,-1.3125,36.7919,Critical,6,920,Flash flood,22.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-03-15,Ruaraka,Kasarani,-1.2456,36.8778,Medium,1,180,Drainage failure,5.5,7,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-03-13,Githurai 44,Kasarani,-1.2003,36.9014,Medium,0,240,Flash flood,4.0,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-03-10,Njiru,Kasarani,-1.2089,36.9278,Low,0,95,Drainage failure,2.0,12,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2024-01-28,Eastleigh Section 3,Eastlands,-1.2756,36.8517,High,2,350,Flash flood,11.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2023-11-20,Zimmerman,Kasarani,-1.2178,36.9014,Medium,1,160,Drainage failure,4.5,9,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2023-11-18,Roysambu,Kasarani,-1.2156,36.9003,Low,0,120,Flash flood,2.5,11,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2023-05-08,South B,Langata,-1.3003,36.8261,Medium,0,200,Drainage failure,6.0,7,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2023-05-06,Ongata Rongai,Kajiado North,-1.3917,36.7736,High,1,310,River overflow,9.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified
+2022-11-12,Westlands Flood Plain,Westlands,-1.2647,36.8031,High,2,285,River overflow,14.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits",compiled-unverified

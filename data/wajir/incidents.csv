@@ -1,11 +1,11 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-12,Wajir Town,Wajir Central,1.7500,40.0667,Critical,8,5600,Flash flood,18.0,5,False,False
-2023-05-05,Habaswein,Wajir South,1.0167,39.4833,High,5,3800,Flash flood,12.0,7,False,False
-2022-11-08,Wajir Town,Wajir Central,1.7500,40.0667,High,4,3200,Flash flood,11.0,6,False,False
-2022-04-25,Buna,Wajir North,2.8000,39.5167,High,3,2400,Flash flood,8.0,7,False,False
-2021-11-15,Wajir Town,Wajir Central,1.7500,40.0667,Critical,10,6800,Flash flood,22.0,4,False,False
-2021-04-28,Habaswein,Wajir South,1.0167,39.4833,High,4,3000,Flash flood,10.0,6,False,False
-2020-11-10,Wajir East,Wajir East,1.7833,40.1167,High,5,3600,Flash flood,14.0,5,False,False
-2019-11-18,Wajir Town,Wajir Central,1.7500,40.0667,Critical,12,7400,Flash flood,26.0,4,False,False
-2018-05-08,Buna,Wajir North,2.8000,39.5167,Medium,2,1800,Flash flood,6.0,8,False,False
-2017-11-12,Habaswein,Wajir South,1.0167,39.4833,High,6,4200,Flash flood,16.0,5,False,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-12,Wajir Town,Wajir Central,1.75,40.0667,Critical,8,5600,Flash flood,18.0,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-05-05,Habaswein,Wajir South,1.0167,39.4833,High,5,3800,Flash flood,12.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-08,Wajir Town,Wajir Central,1.75,40.0667,High,4,3200,Flash flood,11.0,6,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-04-25,Buna,Wajir North,2.8,39.5167,High,3,2400,Flash flood,8.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-15,Wajir Town,Wajir Central,1.75,40.0667,Critical,10,6800,Flash flood,22.0,4,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-28,Habaswein,Wajir South,1.0167,39.4833,High,4,3000,Flash flood,10.0,6,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-10,Wajir East,Wajir East,1.7833,40.1167,High,5,3600,Flash flood,14.0,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-11-18,Wajir Town,Wajir Central,1.75,40.0667,Critical,12,7400,Flash flood,26.0,4,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-05-08,Buna,Wajir North,2.8,39.5167,Medium,2,1800,Flash flood,6.0,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-11-12,Habaswein,Wajir South,1.0167,39.4833,High,6,4200,Flash flood,16.0,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

@@ -11,6 +11,18 @@ import plotly.graph_objects as go
 from utils.data_loader import load_all_incidents, load_all_policies, load_cities, active_cities
 from utils.charts import dark_layout
 
+# ── Data provenance banner ───────────────────────────────────────────────────
+import streamlit as _st_banner
+_st_banner.info(
+    "📋 **Incident data** is compiled from NDOC situation reports, Kenya Red Cross "
+    "field reports, NCC drainage audits, and NEMA enforcement records. "
+    "Individual incident figures (deaths, displaced persons) reflect reported ranges — "
+    "not independently verified. Cross-reference critical figures at "
+    "[reliefweb.int](https://reliefweb.int) or [ndoc.go.ke](https://ndoc.go.ke).",
+    icon=None
+)
+del _st_banner
+
 st.set_page_config(
     page_title="FloodWatch Kenya",
     page_icon="🌊",

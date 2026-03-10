@@ -1,16 +1,16 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-18,Mathare Valley,Mathare North,-1.2601,36.8623,Critical,9,5200,River overflow,28.0,3,True,False
-2023-04-25,Kibera Soweto East,Kibera,-1.3156,36.7834,Critical,6,4800,Drainage failure,18.5,4,True,False
-2022-11-12,Mukuru kwa Njenga,Embakasi West,-1.3089,36.8634,Critical,7,5900,Drainage failure,24.0,3,True,False
-2022-05-03,Mathare 4A,Mathare North,-1.2556,36.8689,High,4,3200,River overflow,14.0,4,True,False
-2021-11-20,Korogocho,Kasarani,-1.2334,36.8867,Critical,8,5400,Drainage failure,22.0,3,True,False
-2021-04-30,Kibera Laini Saba,Kibera,-1.3134,36.7812,High,3,2800,Flash flood,10.0,5,True,False
-2020-11-08,Mukuru Kwa Reuben,Embakasi East,-1.3145,36.8712,Critical,6,4600,Drainage failure,20.0,3,True,False
-2020-05-05,Mathare Valley,Mathare North,-1.2601,36.8623,High,4,3400,River overflow,15.0,4,True,False
-2019-11-14,Ngong River Corridor,Lang'ata,-1.3267,36.8245,High,3,2600,River overflow,11.0,5,True,False
-2019-05-10,Korogocho Zone 4,Kasarani,-1.2334,36.8867,High,4,3100,Flash flood,13.0,4,True,False
-2018-11-22,Kibera Soweto East,Kibera,-1.3156,36.7834,Critical,11,6200,Drainage failure,32.0,3,True,False
-2018-04-28,Mathare 3C,Mathare South,-1.2645,36.8701,High,3,2400,River overflow,10.0,4,True,False
-2017-05-08,Mukuru kwa Njenga,Embakasi West,-1.3089,36.8634,High,5,3800,Drainage failure,16.0,4,True,False
-2016-11-15,Korogocho Zone 1,Kasarani,-1.2289,36.8923,Critical,12,6800,Flash flood,36.0,3,True,False
-2015-05-20,Mathare Valley,Mathare North,-1.2601,36.8623,Critical,14,7400,River overflow,44.0,2,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-18,Mathare Valley,Mathare North,-1.2601,36.8623,Critical,9,5200,River overflow,28.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-25,Kibera Soweto East,Kibera,-1.3156,36.7834,Critical,6,4800,Drainage failure,18.5,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-12,Mukuru kwa Njenga,Embakasi West,-1.3089,36.8634,Critical,7,5900,Drainage failure,24.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-03,Mathare 4A,Mathare North,-1.2556,36.8689,High,4,3200,River overflow,14.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-20,Korogocho,Kasarani,-1.2334,36.8867,Critical,8,5400,Drainage failure,22.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-30,Kibera Laini Saba,Kibera,-1.3134,36.7812,High,3,2800,Flash flood,10.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-08,Mukuru Kwa Reuben,Embakasi East,-1.3145,36.8712,Critical,6,4600,Drainage failure,20.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-05-05,Mathare Valley,Mathare North,-1.2601,36.8623,High,4,3400,River overflow,15.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-11-14,Ngong River Corridor,Lang'ata,-1.3267,36.8245,High,3,2600,River overflow,11.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-05-10,Korogocho Zone 4,Kasarani,-1.2334,36.8867,High,4,3100,Flash flood,13.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-22,Kibera Soweto East,Kibera,-1.3156,36.7834,Critical,11,6200,Drainage failure,32.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-04-28,Mathare 3C,Mathare South,-1.2645,36.8701,High,3,2400,River overflow,10.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-05-08,Mukuru kwa Njenga,Embakasi West,-1.3089,36.8634,High,5,3800,Drainage failure,16.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2016-11-15,Korogocho Zone 1,Kasarani,-1.2289,36.8923,Critical,12,6800,Flash flood,36.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2015-05-20,Mathare Valley,Mathare North,-1.2601,36.8623,Critical,14,7400,River overflow,44.0,2,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

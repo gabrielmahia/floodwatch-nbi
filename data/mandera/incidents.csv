@@ -1,11 +1,11 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-18,Mandera Town,Mandera Central,3.9333,41.8500,Critical,9,6800,River overflow,22.0,5,True,False
-2023-05-02,Elwak,Mandera South,3.4833,40.9167,High,4,3200,Flash flood,12.0,6,False,False
-2022-11-10,Mandera East,Mandera East,3.9500,41.9000,Critical,12,8400,River overflow,34.0,4,True,False
-2022-04-25,Lafey,Mandera North,3.8833,41.3000,High,3,2600,Flash flood,9.0,7,False,False
-2021-11-15,Mandera Town,Mandera Central,3.9333,41.8500,Critical,15,10200,River overflow,42.0,4,True,False
-2021-04-28,Elwak,Mandera South,3.4833,40.9167,High,5,3800,Flash flood,14.0,5,False,False
-2020-11-08,Mandera East,Mandera East,3.9500,41.9000,High,6,4900,River overflow,18.0,5,True,False
-2019-11-20,Mandera Town,Mandera Central,3.9333,41.8500,Critical,18,12600,River overflow,55.0,3,True,False
-2018-05-05,Lafey,Mandera North,3.8833,41.3000,Medium,2,1800,Flash flood,6.5,8,False,False
-2017-11-12,Mandera East,Mandera East,3.9500,41.9000,High,7,5400,River overflow,20.0,5,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-18,Mandera Town,Mandera Central,3.9333,41.85,Critical,9,6800,River overflow,22.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-05-02,Elwak,Mandera South,3.4833,40.9167,High,4,3200,Flash flood,12.0,6,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-10,Mandera East,Mandera East,3.95,41.9,Critical,12,8400,River overflow,34.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-04-25,Lafey,Mandera North,3.8833,41.3,High,3,2600,Flash flood,9.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-15,Mandera Town,Mandera Central,3.9333,41.85,Critical,15,10200,River overflow,42.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-28,Elwak,Mandera South,3.4833,40.9167,High,5,3800,Flash flood,14.0,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-08,Mandera East,Mandera East,3.95,41.9,High,6,4900,River overflow,18.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-11-20,Mandera Town,Mandera Central,3.9333,41.85,Critical,18,12600,River overflow,55.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-05-05,Lafey,Mandera North,3.8833,41.3,Medium,2,1800,Flash flood,6.5,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-11-12,Mandera East,Mandera East,3.95,41.9,High,7,5400,River overflow,20.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

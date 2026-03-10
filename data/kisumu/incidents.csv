@@ -1,16 +1,16 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-12,Nyalenda A,Kisumu East,-0.1200,34.7650,Critical,6,4200,Drainage failure,18.0,4,True,False
-2023-04-22,Manyatta B,Kisumu East,-0.0950,34.7780,High,2,2800,Flash flood,8.5,5,True,False
-2022-11-08,Obunga,Kisumu Central,-0.0800,34.7520,High,3,3100,Lake backflow,12.0,5,True,False
-2022-05-02,Kaloleni,Kisumu West,-0.1050,34.7380,Critical,5,4800,River overflow,16.5,4,True,False
-2021-11-20,Nyalenda B,Kisumu East,-0.1250,34.7700,Critical,8,5600,Lake backflow,24.0,3,True,False
-2021-04-30,Bandani,Kisumu North,-0.0600,34.7600,High,2,2200,Flash flood,7.0,6,False,False
-2020-11-15,Dunga Beach,Kisumu Central,-0.1400,34.7400,High,1,1800,Lake backflow,5.5,7,True,True
-2020-05-10,Manyatta A,Kisumu East,-0.0920,34.7820,High,3,3400,Drainage failure,10.0,5,True,False
-2019-11-05,Nyalenda A,Kisumu East,-0.1200,34.7650,Critical,9,6100,Lake backflow,28.0,3,True,False
-2019-05-18,Obunga,Kisumu Central,-0.0800,34.7520,High,2,2600,River overflow,8.0,5,True,False
-2018-11-22,Kaloleni,Kisumu West,-0.1050,34.7380,High,4,3800,Flash flood,13.0,4,True,False
-2018-04-28,Nyalenda B,Kisumu East,-0.1250,34.7700,Critical,7,5200,Lake backflow,22.0,3,True,False
-2017-05-05,Manyatta B,Kisumu East,-0.0950,34.7780,Medium,1,1600,Drainage failure,4.5,8,False,False
-2016-11-10,Dunga,Kisumu Central,-0.1400,34.7400,High,3,3000,Lake backflow,9.5,5,True,False
-2015-05-20,Nyalenda A,Kisumu East,-0.1200,34.7650,Critical,10,7200,Lake backflow,32.0,3,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-12,Nyalenda A,Kisumu East,-0.12,34.765,Critical,6,4200,Drainage failure,18.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-22,Manyatta B,Kisumu East,-0.095,34.778,High,2,2800,Flash flood,8.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-08,Obunga,Kisumu Central,-0.08,34.752,High,3,3100,Lake backflow,12.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-02,Kaloleni,Kisumu West,-0.105,34.738,Critical,5,4800,River overflow,16.5,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-20,Nyalenda B,Kisumu East,-0.125,34.77,Critical,8,5600,Lake backflow,24.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-30,Bandani,Kisumu North,-0.06,34.76,High,2,2200,Flash flood,7.0,6,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-15,Dunga Beach,Kisumu Central,-0.14,34.74,High,1,1800,Lake backflow,5.5,7,True,True,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-05-10,Manyatta A,Kisumu East,-0.092,34.782,High,3,3400,Drainage failure,10.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-11-05,Nyalenda A,Kisumu East,-0.12,34.765,Critical,9,6100,Lake backflow,28.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-05-18,Obunga,Kisumu Central,-0.08,34.752,High,2,2600,River overflow,8.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-22,Kaloleni,Kisumu West,-0.105,34.738,High,4,3800,Flash flood,13.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-04-28,Nyalenda B,Kisumu East,-0.125,34.77,Critical,7,5200,Lake backflow,22.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-05-05,Manyatta B,Kisumu East,-0.095,34.778,Medium,1,1600,Drainage failure,4.5,8,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2016-11-10,Dunga,Kisumu Central,-0.14,34.74,High,3,3000,Lake backflow,9.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2015-05-20,Nyalenda A,Kisumu East,-0.12,34.765,Critical,10,7200,Lake backflow,32.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

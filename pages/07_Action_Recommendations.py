@@ -390,8 +390,9 @@ with tab_full:
 Eight county and national flood management plans are designed, funded in part, and sitting
 at the gazette stage. A single Cabinet directive requiring county assemblies to gazette
 approved flood management frameworks within 90 days — with a named accountability officer —
-costs nothing and unlocks implementation authority for an estimated **1,930 lives of
-annual risk reduction**.
+costs nothing and unlocks implementation authority for an **estimated 1,930 lives of
+annual risk reduction** *(model projection based on incident death rates in the affected 
+counties — not a cited external figure; actual impact depends on enforcement quality)*.
 
 **2. Ring-fence flood infrastructure budgets (next budget cycle)**
 County development funds are being used as discretionary pools. Kitale's stormwater budget
@@ -404,7 +405,8 @@ infrastructure allocations from discretionary re-allocation would protect an est
 NCC's flood risk map has been published since 2020. Planning approvals in flood zones
 continue to be issued without mandatory cross-referencing. NEMA and NCC jointly hold
 the authority to require this check — no legislation is needed. Estimated impact:
-**200+ lives annually** from reduced new exposure in flood-risk zones.
+**200+ lives annually** from reduced new exposure in flood-risk zones 
+*(indicative projection; based on NCC flood risk map coverage gap extrapolation)*.
 
 **4. Establish a single Inter-County Flood Coordination Authority (3–6 months)**
 Budalangi, Kisumu, Naivasha, and Embu all have stalled policies whose primary blocker
@@ -416,7 +418,8 @@ resolves four major coordination failures simultaneously.
 Wajir, Mandera, Isiolo, and Garissa operate in a policy vacuum. The national framework
 assumes urban drainage infrastructure. A separate ASAL response architecture — community
 early warning, livestock corridor preservation, mobile response capacity — is needed.
-Current gap: **near-zero institutional coverage** for an estimated 2.1M people.
+Current gap: **near-zero institutional coverage** for an estimated 2.1M people 
+*(ASAL county population totals from KNBS 2019 census)*.
 """)
         st.divider()
 

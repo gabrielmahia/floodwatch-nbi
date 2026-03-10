@@ -1,11 +1,11 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-12,Machakos Town,Machakos Central,-1.5167,37.2667,High,2,1300,Flash flood,7.5,5,True,False
-2023-04-22,Mwala,Mwala,-1.3833,37.4167,High,3,1700,River overflow,10.0,5,True,False
-2022-11-08,Machakos Town,Machakos Central,-1.5167,37.2667,Critical,5,2600,Flash flood,17.0,4,True,False
-2022-05-05,Kangundo,Kangundo,-1.2500,37.3500,Medium,1,800,Flash flood,4.0,7,False,False
-2021-11-18,Machakos Town,Machakos Central,-1.5167,37.2667,High,3,1600,Flash flood,9.0,5,True,False
-2021-04-25,Mwala,Mwala,-1.3833,37.4167,High,2,1400,River overflow,8.0,5,True,False
-2020-11-08,Matungulu,Matungulu,-1.2333,37.3333,Medium,1,900,Flash flood,4.5,7,False,False
-2019-05-10,Machakos Town,Machakos Central,-1.5167,37.2667,High,3,1800,Flash flood,10.0,5,True,False
-2018-11-12,Mwala,Mwala,-1.3833,37.4167,High,2,1300,River overflow,7.0,5,True,False
-2017-04-25,Kangundo,Kangundo,-1.2500,37.3500,High,2,1200,Flash flood,6.5,6,True,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-12,Machakos Town,Machakos Central,-1.5167,37.2667,High,2,1300,Flash flood,7.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-22,Mwala,Mwala,-1.3833,37.4167,High,3,1700,River overflow,10.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-08,Machakos Town,Machakos Central,-1.5167,37.2667,Critical,5,2600,Flash flood,17.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-05,Kangundo,Kangundo,-1.25,37.35,Medium,1,800,Flash flood,4.0,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-18,Machakos Town,Machakos Central,-1.5167,37.2667,High,3,1600,Flash flood,9.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-25,Mwala,Mwala,-1.3833,37.4167,High,2,1400,River overflow,8.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-08,Matungulu,Matungulu,-1.2333,37.3333,Medium,1,900,Flash flood,4.5,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-05-10,Machakos Town,Machakos Central,-1.5167,37.2667,High,3,1800,Flash flood,10.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-12,Mwala,Mwala,-1.3833,37.4167,High,2,1300,River overflow,7.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-04-25,Kangundo,Kangundo,-1.25,37.35,High,2,1200,Flash flood,6.5,6,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified

@@ -1,11 +1,11 @@
-date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced
-2023-11-08,Embu Town,Embu Central,-0.5333,37.4500,High,2,1100,River overflow,6.5,5,True,False
-2023-04-20,Mbeere North,Mbeere North,-0.5667,37.5500,High,3,1600,Flash flood,9.5,5,False,False
-2022-11-10,Runyenjes,Runyenjes,-0.4333,37.5667,Critical,5,2400,River overflow,16.0,4,True,False
-2022-05-05,Embu Town,Embu Central,-0.5333,37.4500,High,2,1300,Flash flood,7.5,5,True,False
-2021-11-18,Mbeere South,Mbeere South,-0.7167,37.5333,High,3,1700,River overflow,10.0,4,True,False
-2021-04-25,Runyenjes,Runyenjes,-0.4333,37.5667,High,2,1400,Flash flood,8.0,5,True,False
-2020-11-08,Embu Town,Embu Central,-0.5333,37.4500,Medium,1,900,Drainage failure,4.5,7,False,False
-2019-05-10,Mbeere North,Mbeere North,-0.5667,37.5500,High,3,1800,River overflow,11.0,5,True,False
-2018-11-15,Runyenjes,Runyenjes,-0.4333,37.5667,Critical,6,2900,River overflow,20.0,3,True,False
-2017-04-22,Embu Town,Embu Central,-0.5333,37.4500,High,2,1200,Flash flood,7.0,5,False,False
+date,location,zone,lat,lon,severity,deaths,displaced,cause,infra_damage_ksh_m,response_days,policy_existed,policy_enforced,source,verified
+2023-11-08,Embu Town,Embu Central,-0.5333,37.45,High,2,1100,River overflow,6.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2023-04-20,Mbeere North,Mbeere North,-0.5667,37.55,High,3,1600,Flash flood,9.5,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-11-10,Runyenjes,Runyenjes,-0.4333,37.5667,Critical,5,2400,River overflow,16.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2022-05-05,Embu Town,Embu Central,-0.5333,37.45,High,2,1300,Flash flood,7.5,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-11-18,Mbeere South,Mbeere South,-0.7167,37.5333,High,3,1700,River overflow,10.0,4,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2021-04-25,Runyenjes,Runyenjes,-0.4333,37.5667,High,2,1400,Flash flood,8.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2020-11-08,Embu Town,Embu Central,-0.5333,37.45,Medium,1,900,Drainage failure,4.5,7,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2019-05-10,Mbeere North,Mbeere North,-0.5667,37.55,High,3,1800,River overflow,11.0,5,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2018-11-15,Runyenjes,Runyenjes,-0.4333,37.5667,Critical,6,2900,River overflow,20.0,3,True,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
+2017-04-22,Embu Town,Embu Central,-0.5333,37.45,High,2,1200,Flash flood,7.0,5,False,False,"Compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits — verify individual incidents at reliefweb.int or ndoc.go.ke",compiled-unverified
