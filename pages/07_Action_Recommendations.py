@@ -445,7 +445,7 @@ Current gap: **near-zero institutional coverage** for an estimated 2.1M people
                   "Low":      "background-color:#103D15; color:#69FF79"}
         return colors.get(val, "")
 
-    styled = display_df.style.applymap(color_urgency, subset=["Urgency"])
+    styled = display_df.style.map(color_urgency, subset=["Urgency"])
     st.dataframe(styled, use_container_width=True, height=600)
 
     st.download_button(
