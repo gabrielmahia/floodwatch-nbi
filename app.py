@@ -5,6 +5,10 @@ Landing page: national KPI summary, city coverage map, alert banner.
 Data compiled from NDOC situation reports, Kenya Red Cross field reports, NCC drainage audits, NEMA enforcement records, and county government documentation.
 """
 import streamlit as st
+import urllib.request
+import json
+import xml.etree.ElementTree as ET
+import re
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -47,6 +51,60 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
+
+@st.cache_data(ttl=3600)
+def fetch_nairobi_weather():
+    """7-day rainfall forecast for Nairobi from Open-Meteo (free, no key)."""
+    try:
+        url = (
+            "https://api.open-meteo.com/v1/forecast"
+            "?latitude=-1.29&longitude=36.82"
+            "&daily=precipitation_sum,temperature_2m_max,weathercode"
+            "&current=precipitation,temperature_2m,weathercode"
+            "&forecast_days=7&timezone=Africa%2FNairobi"
+        )
+        with urllib.request.urlopen(url, timeout=8) as r:
+            d = json.loads(r.read())
+        current = d.get("current", {})
+        daily   = d.get("daily",   {})
+        return {
+            "current_temp":   current.get("temperature_2m"),
+            "current_precip": current.get("precipitation", 0),
+            "current_code":   current.get("weathercode", 0),
+            "dates":          daily.get("time", []),
+            "precip_7d":      daily.get("precipitation_sum", []),
+            "temp_max_7d":    daily.get("temperature_2m_max", []),
+            "source":         "Open-Meteo · open-meteo.com · updated hourly",
+            "live":           True,
+        }
+    except Exception:
+        return {"live": False}
+
+
+@st.cache_data(ttl=7200)
+def fetch_ndma_alerts():
+    """Latest NDMA drought/flood updates from ndma.go.ke RSS."""
+    try:
+        req = urllib.request.Request(
+            "https://www.ndma.go.ke/feed/",
+            headers={"User-Agent": "floodwatch-kenya/1.0"},
+        )
+        with urllib.request.urlopen(req, timeout=8) as r:
+            root = ET.fromstring(r.read())
+        items = []
+        for item in root.findall(".//item")[:6]:
+            title = item.findtext("title", "").strip()
+            link  = item.findtext("link", "").strip()
+            date  = item.findtext("pubDate", "").strip()[:16]
+            desc  = re.sub(r"<[^>]+>", "", item.findtext("description", "")).strip()[:180]
+            cat   = item.findtext("category", "").strip()
+            if title:
+                items.append({"title": title, "link": link, "date": date,
+                               "summary": desc, "category": cat})
+        return items
+    except Exception:
+        return []
 
 @st.cache_data
 def get_all_data():
