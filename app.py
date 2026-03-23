@@ -158,8 +158,8 @@ total_deaths     = int(incidents["deaths"].sum()) if not incidents.empty else 0
 total_displaced  = int(incidents["displaced"].sum()) if not incidents.empty else 0
 total_incidents  = len(incidents)
 policy_gap       = int(
-    (incidents["policy_existed"] == True).sum() -
-    (incidents["policy_enforced"] == True).sum()
+    (incidents["policy_existed"]).sum() -
+    (incidents["policy_enforced"]).sum()
 ) if not incidents.empty else 0
 
 total_policies   = len(policies) if not policies.empty else 0
@@ -300,9 +300,9 @@ if not incidents.empty:
     st.markdown("### National Enforcement Gap")
     city_gap = incidents.groupby("city_name").apply(
         lambda df: pd.Series({
-            "existed":  int((df["policy_existed"] == True).sum()),
-            "enforced": int((df["policy_enforced"] == True).sum()),
-            "gap":      int((df["policy_existed"] == True).sum() - (df["policy_enforced"] == True).sum()),
+            "existed":  int((df["policy_existed"]).sum()),
+            "enforced": int((df["policy_enforced"]).sum()),
+            "gap":      int((df["policy_existed"]).sum() - (df["policy_enforced"]).sum()),
             "incidents": len(df),
         })
     ).reset_index().sort_values("gap", ascending=True)
