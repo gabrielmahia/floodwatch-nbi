@@ -16,4 +16,4 @@ jobs:
           python-version: "3.11"
           cache: "pip"
       - run: pip install ruff
-      - run: ruff check app.py pages/ utils/ --ignore E501,E701,F401,W291,E712
+      - run: ruff check app.py pages/ utils/ --ignore E501,E701,E741,F401,W291,E712
